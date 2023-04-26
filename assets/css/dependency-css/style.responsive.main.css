@@ -1,0 +1,5 @@
+@media only screen and (max-width:1366px){
+    table.dataTable tbody th, table.dataTable tbody td, table.dataTable thead>tr>th.sorting{
+        /* padding: 1rem; */
+    }
+}
