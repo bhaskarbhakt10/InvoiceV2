@@ -21,16 +21,21 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="address-country" class="form-label">Select a Country</label>
-                                    <select name="address-country" id="address-country" class="form-select form-field" required >
+                                    <select name="address-country" id="address-country" class="form-select form-field " required >
                                         <option value="">Select an country</option>
                                         <option value="">India</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="address-country" class="form-label">Select a Country</label>
-                                    <select name="address-country" id="address-country" class="form-select form-field" required >
-                                        <option value="">Select an country</option>
-                                        <option value="">India</option>
+                                    <label for="address-country-state" class="form-label">Select a State</label>
+                                    <select name="address-country-state" id="address-country-state" class="form-select form-field" required >
+                                        <option value="">please select a state</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="address-country" class="form-label">Select a State</label>
+                                    <select name="address-country-state" id="address-country-state" class="form-select form-field" required >
+                                        <option value="">please select a satate</option>
                                     </select>
                                 </div>
                             </div>
