@@ -13,7 +13,7 @@
                             <div class="address-decision">
                                 <div class="d-flex flex-wrap gap-10">
                                     <div class="d-flex">
-                                        <input type="checkbox" name="textbox-usage" id="use-text-box-no" checked  class="form-check-input form-field">
+                                        <input type="checkbox" name="textbox-usage" id="use-text-box-no" checked class="form-check-input form-field">
                                         <label for="use-text-box-no">Using api</label>
                                     </div>
                                     <div class="d-flex">
@@ -93,6 +93,36 @@
                                     <div class="text-address mb-3">
                                         <label for="">Input address</label>
                                         <textarea name="text-address-box" id="text-address-box" cols="30" rows="10" class="form-control form-field" required></textarea>
+                                    </div>
+                                </div>
+                                <div class="address-tax" id="address-tax">
+                                    <div class="row" id="tax-row">
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="CGST">CGST</label>
+                                                <input type="text" name="CGST" id="CGST" class="form-control form-field" required readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="SGST">SGST</label>
+                                                <input type="text" name="SGST" id="SGST" class="form-control form-field" required readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="IGST">IGST</label>
+                                                <input type="text" name="IGST" id="IGST" class="form-control form-field" required readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="country-currency">Currency</label>
+                                                <input type="text" name="country-currency" id="country-currency" class="form-control form-field" required readonly>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
