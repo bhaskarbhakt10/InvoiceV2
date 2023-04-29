@@ -28,7 +28,7 @@
 
 
     let input_city = $('#input-city');
-    let address_country_city = $('#address-country_l-city');
+    let address_country_city = $('#address-country-city');
     // input_city.addClass('d-none');
     input_city.detach();
     $('#input-city-check').on('change', function () {
@@ -52,8 +52,7 @@
     $(document).on('blur', '#text-address-box', function () {
         let this_input__ = $(this).val().toLowerCase();
         let this_input = this_input__.replace(/[^\w\s\']|_/g, "")
-        let address_array = this_input.split(' ');
-        console.log(address_array);
+        console.log(this_input);
         let country = "India";
         let state = "Maharashtra";
         let country_l = country.toLowerCase();
