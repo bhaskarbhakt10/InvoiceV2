@@ -19,7 +19,7 @@
     unset($scripts[1]);
     foreach ($scripts as $script) {
     ?>
-        <script src="<?php echo ROOT_URL . 'assets/js/custom-scripts/' . $script ?>"></script>
+        <script src="<?php echo ROOT_URL . 'assets/js/custom-scripts/' . $script."?ver".time() ?>"></script>
     <?php
     }
     ?>

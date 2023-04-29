@@ -1,5 +1,5 @@
 <div class="container">
-    <form action="" method="POST">
+    <form action="<?php echo ROOT_URL_ACTION .'add-client.php';?>" method="POST" class="form" id="add-client-form">
         <fieldset>
             <div class="form-wrapper">
                 <div class="row">
@@ -13,11 +13,11 @@
                             <div class="address-decision">
                                 <div class="d-flex flex-wrap gap-10">
                                     <div class="d-flex">
-                                        <input type="checkbox" name="textbox-usage" id="use-text-box-no" checked class="form-check-input form-field">
+                                        <input type="checkbox" name="textbox-usage" id="use-text-box-no" value="no" checked class="form-check-input form-field">
                                         <label for="use-text-box-no">Using api</label>
                                     </div>
                                     <div class="d-flex">
-                                        <input type="checkbox" name="textbox-usage" id="use-text-box-yes" class="form-check-input form-field">
+                                        <input type="checkbox" name="textbox-usage" id="use-text-box-yes" value="yes" class="form-check-input form-field">
                                         <label for="use-text-box-yes">I want to use text box</label>
                                     </div>
                                 </div>

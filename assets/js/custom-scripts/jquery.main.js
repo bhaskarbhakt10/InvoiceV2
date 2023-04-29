@@ -75,14 +75,5 @@
 
     });
 
-     //sunmit form 
-     $(document.body).on('submit', '.submit-form', function (e) {
-        e.preventDefault();
-        let this_form = $(this).closest('form');
-        console.warn(this_form);
-        let form_data = this_form.serializeArray();
-        console.warn(form_data);
-    });
-
 
 })(jQuery);
