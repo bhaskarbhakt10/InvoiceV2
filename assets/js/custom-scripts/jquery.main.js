@@ -43,7 +43,7 @@
         }
     });
 
-   
+
 
     //textbox address 
     let igst__ = $('#IGST');
@@ -52,12 +52,12 @@
     $(document).on('blur', '#text-address-box', function () {
         let this_input__ = $(this).val().toLowerCase();
         let this_input = this_input__.replace(/[^\w\s\']|_/g, "")
-        console.log(this_input);
+        // console.log(this_input);
         let country = "India";
         let state = "Maharashtra";
         let country_l = country.toLowerCase();
         let state_l = state.toLowerCase();
-        if (this_input.includes(country_l) === true && this_input.includes(state_l) === false)  {
+        if (this_input.includes(country_l) === true && this_input.includes(state_l) === false) {
             igst__.val("18%");
             cgst__.val('N/A');
             sgst__.val('N/A');
@@ -67,12 +67,50 @@
             cgst__.val('9%');
             sgst__.val('9%');
         }
-        else{
+        else {
             igst__.val("N/A");
             cgst__.val('N/A');
             sgst__.val('N/A');
         }
 
+    });
+    $(".datepicker").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd-mm-yy'
+    });
+
+    $(document.body).on('click','.add-row', function(e){
+        e.preventDefault();
+        let details_row = $(this).closest('tr');
+        $("<tr class='details-row'>"+details_row.html()+"</tr>").insertAfter($(details_row));
+        let sr_no = $(this).closest('tbody').find('tr.details-row');
+        calcSr_no(sr_no);
+    });
+
+
+    async function calcSr_no(sr_no){
+        let srNo = $(sr_no).find('.sr-no');
+        for (let index = 0; index < srNo.length; index++) {
+            let sr_no__ = index + 1;
+            // console.warn(sr_no__);
+            $(srNo[index]).text(sr_no__);
+            
+        }
+    }
+    
+    $(document.body).on('click','.remove-row', function(e){
+        e.preventDefault();
+        let details_row_length = $(this).closest('tbody').find('tr.details-row').length;
+        if(details_row_length > 1){
+            let details_row = $(this).closest('tr');
+            let sr_no = $(this).closest('tbody').find('tr.details-row');
+            $(details_row).remove();
+            calcSr_no(sr_no);
+        }
+        else{
+            alert("This row can't be removed");
+        }
     });
 
 

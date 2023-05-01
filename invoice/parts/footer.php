@@ -7,6 +7,7 @@
     <script src="<?php echo ROOT_URL ;?>assets/js/dependency-js/jquery.script.jQuery.js"></script>
     <script src="<?php echo ROOT_URL ;?>assets/js/dependency-js/script.bootstrap.js"></script>
     <script src="<?php echo ROOT_URL ;?>assets/js/dependency-js/script.material-bootstrap.js"></script>
+    <script src="<?php echo ROOT_URL ;?>assets/js/dependency-js/jquery-ui.js"></script>
     <script src="<?php echo ROOT_URL ;?>assets/js/dependency-js/script.datatables.js"></script>
     <script src="<?php echo ROOT_URL ;?>assets/js/dependency-js/script.datatables.responsive.js"></script>
     <script src="<?php echo ROOT_URL ;?>assets/js/dependency-js/script.select2.min.js"></script>

@@ -11,7 +11,6 @@ if (isset($_POST)) {
     print_r($client_arr);
 
 $client = new Client();
-$client->gen_client_ID();
-
+$client->get_details($client_arr);
 
 }

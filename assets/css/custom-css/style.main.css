@@ -590,3 +590,18 @@ ul {
 .bg_form_blue {
   background-color: #C1E4FA;
 }
+/* .details-row{
+  display: flex;
+  row-gap: 25px;
+  flex-direction: column;
+}
+.details-row-inner, .discount-row{
+  display: flex;
+  flex-wrap: wrap;
+  gap:20px;
+  align-items: center;
+}
+.details-row-inner>*, .discount-row>*{
+  display: flex;
+  flex: 1 1 auto;
+} */
