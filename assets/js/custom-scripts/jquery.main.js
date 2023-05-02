@@ -80,38 +80,64 @@
         dateFormat: 'dd-mm-yy'
     });
 
-    $(document.body).on('click','.add-row', function(e){
+    $(document.body).on('click', '.add-row', function (e) {
         e.preventDefault();
         let details_row = $(this).closest('tr');
-        $("<tr class='details-row'>"+details_row.html()+"</tr>").insertAfter($(details_row));
+        $("<tr class='details-row'>" + details_row.html() + "</tr>").insertAfter($(details_row));
         let sr_no = $(this).closest('tbody').find('tr.details-row');
         calcSr_no(sr_no);
     });
 
 
-    async function calcSr_no(sr_no){
+    async function calcSr_no(sr_no) {
         let srNo = $(sr_no).find('.sr-no');
         for (let index = 0; index < srNo.length; index++) {
             let sr_no__ = index + 1;
             // console.warn(sr_no__);
             $(srNo[index]).text(sr_no__);
-            
+
         }
     }
-    
-    $(document.body).on('click','.remove-row', function(e){
+
+    $(document.body).on('click', '.remove-row', function (e) {
         e.preventDefault();
         let details_row_length = $(this).closest('tbody').find('tr.details-row').length;
-        if(details_row_length > 1){
+        if (details_row_length > 1) {
             let details_row = $(this).closest('tr');
             let sr_no = $(this).closest('tbody').find('tr.details-row');
             $(details_row).remove();
             calcSr_no(sr_no);
+            sum();
+            
         }
-        else{
+        else {
             alert("This row can't be removed");
         }
     });
+
+    $(document.body).on('blur', '[name="price"]', function (e) {
+        e.preventDefault();
+        let this_value = $(this).val();
+        sum();
+        
+    });
+
+    function sum() {
+        let price_array = new Array(0);
+        let price = $('[name="price"]').toArray();
+        for (let index = 0; index < price.length; index++) {
+            let value = $(price[index]).val();
+            if (value.includes(',') === true) {
+                value = value.replaceAll(',', '');
+            }
+            // if(value ==='' || value === null || value === undefined){
+            //     value = 0;
+            // }
+            price_array.push(parseFloat(value));
+        }
+        let sum_price = price_array.reduce((a,b)=> a+b ,0);
+        $('#total').val(sum_price);
+    }
 
 
 })(jQuery);
