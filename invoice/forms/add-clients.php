@@ -1,5 +1,5 @@
 <div class="container">
-    <form action="" method="POST">
+    <form action="<?php echo ROOT_URL_ACTION . 'add-client.php'; ?>" method="POST" class="form" id="add-client-form">
         <fieldset>
             <div class="form-wrapper">
                 <div class="row">
@@ -13,11 +13,11 @@
                             <div class="address-decision">
                                 <div class="d-flex flex-wrap gap-10">
                                     <div class="d-flex">
-                                        <input type="checkbox" name="textbox-usage" id="use-text-box-no" checked  class="form-check-input form-field">
+                                        <input type="checkbox" name="textbox-usage" id="use-text-box-no" value="no" checked class="form-check-input form-field">
                                         <label for="use-text-box-no">Using api</label>
                                     </div>
                                     <div class="d-flex">
-                                        <input type="checkbox" name="textbox-usage" id="use-text-box-yes" class="form-check-input form-field">
+                                        <input type="checkbox" name="textbox-usage" id="use-text-box-yes" value="yes" class="form-check-input form-field">
                                         <label for="use-text-box-yes">I want to use text box</label>
                                     </div>
                                 </div>
@@ -69,6 +69,22 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
+                                                <label for="postal-code" class="form-label">Postal Code</label>
+                                                <input type="text" name="postal-code" id="postal-code" class="form-control form-field" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="address-text" data-ref="use-text-box-yes">
+                                    <div class="text-address mb-3">
+                                        <label for="" class="form-label">Input address</label>
+                                        <textarea name="text-address-box" id="text-address-box" cols="30" rows="10" class="form-control form-field" required></textarea>
+                                    </div>
+                                </div>
+                                <div class="address-tax" id="address-tax">
+                                    <div class="row" id="tax-row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
                                                 <div class="d-flex w-100 gap-10">
                                                     <div class="w-25">
                                                         <label for="address-country-code" class="form-label">Country Code</label>
@@ -81,18 +97,36 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="postal-code">Postal Code</label>
-                                                <input type="text" name="postal-code" id="postal-code" class="form-control form-field" required>
+                                                <label for="client-email" class="form-label">Email address</label>
+                                                    <input type="email" name="client-email" id="client-email" class="form-control form-field" placeholder="jhom@gmail.com">
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="address-text" data-ref="use-text-box-yes">
-                                    <div class="text-address mb-3">
-                                        <label for="">Input address</label>
-                                        <textarea name="text-address-box" id="text-address-box" cols="30" rows="10" class="form-control form-field" required></textarea>
+                                        <div class="col-md-3">
+                                            <div class="mb-3">
+                                                <label for="CGST">CGST</label>
+                                                <input type="text" name="CGST" id="CGST" class="form-control form-field" required readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="mb-3">
+                                                <label for="SGST">SGST</label>
+                                                <input type="text" name="SGST" id="SGST" class="form-control form-field" required readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="mb-3">
+                                                <label for="IGST">IGST</label>
+                                                <input type="text" name="IGST" id="IGST" class="form-control form-field" required readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="mb-3">
+                                                <label for="country-currency">Currency</label>
+                                                <input type="text" name="country-currency" id="country-currency" class="form-control form-field" required readonly>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

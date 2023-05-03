@@ -1,10 +1,29 @@
 <?php
 // config file maily for constants
 
-if(!defined("ROOT_PATH")){
-    define("ROOT_PATH",$_SERVER['DOCUMENT_ROOT'] . '/invoiceV2/');
+if (!defined("ROOT_PATH")) {
+    define("ROOT_PATH", $_SERVER['DOCUMENT_ROOT'] . '/invoiceV2/');
 }
-if(!defined("ROOT_URL")){
+if (!defined("ROOT_PATH_DB")) {
+    define("ROOT_PATH_DB", $_SERVER['DOCUMENT_ROOT'] . '/invoiceV2/classes/database/database.config.php');
+}
+if (!defined("ROOT_PATH_DBTABLES")) {
+    define("ROOT_PATH_DBTABLES", $_SERVER['DOCUMENT_ROOT'] . '/invoiceV2/classes/database/database.tables.php');
+}
+if (!defined("ROOT_PATH_CLASS")) {
+    define("ROOT_PATH_CLASS", $_SERVER['DOCUMENT_ROOT'] . '/invoiceV2/classes/classes/');
+}
+if (!defined("ROOT_PATH_ACTION") || !defined("ROOT_URL_ACTION")) {
+    define("ROOT_PATH_ACTION", $_SERVER['DOCUMENT_ROOT'] . '/invoiceV2/classes/actions/');
+    $root_url = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/invoiceV2/classes/actions/';
+    define("ROOT_URL_ACTION", $root_url);
+}
+if (!defined("ROOT_URL")) {
     $root_url = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/invoiceV2/';
     define("ROOT_URL", $root_url);
+}
+
+//timezone
+if(!defined('TIMEZONE_IN')){
+    define('TIMEZONE_IN','Asia/Kolkata');
 }
