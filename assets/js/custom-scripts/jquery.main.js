@@ -42,7 +42,7 @@
     });
 
     //sunmit form 
-    $(document.body).on('click','.submit-form',function(e){
+    $(document.body).on('submit','.submit-form',function(e){
         e.preventDefault();
         let this_form = $(this).closest('form');
         console.warn(this_form);
