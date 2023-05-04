@@ -160,6 +160,7 @@ if (document.querySelector('#address-country') !== null) {
         if(selected_country.toLowerCase() === compare_str.toLowerCase() && selected_state.toLowerCase() === compareS_str.toLowerCase()){
             sgst__.value = "9%";
             cgst__.value = "9%";
+            igst__.value = "N/A";
         }
         else{
             igst__.value = "N/A";

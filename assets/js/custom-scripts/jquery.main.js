@@ -30,8 +30,10 @@
     let input_city = $('#input-city');
     let address_country_city = $('#address-country-city');
     // input_city.addClass('d-none');
+
     input_city.detach();
-    $('#input-city-check').on('change', function () {
+    $('#input-city-check').on('change', function (e) {
+
         if ($(this).is(':checked')) {
             $(this).parent().append(input_city);
             address_country_city.detach();
@@ -42,6 +44,25 @@
             input_city.detach();
         }
     });
+
+    //detach gstin
+    let gstin = $('#gstin>*');
+    gstin.detach();
+    $('body').on('change', '#address-country', function (e) {
+        let this_value = $(this).val();
+        gstin__check(this_value);
+    });
+    
+    function gstin__check(this_value){
+        let cmp_country = "India";
+        if (this_value.toLowerCase() === cmp_country.toLowerCase()) {
+            $('#gstin').append(gstin);
+        }
+        else {
+            gstin.detach();
+
+        }
+    }
 
 
 
@@ -61,6 +82,7 @@
             igst__.val("18%");
             cgst__.val('N/A');
             sgst__.val('N/A');
+            gstin__check(country_l);
         }
         else if (this_input.includes(state_l) === true && this_input.includes(country_l) === true) {
             igst__.val("N/A");
@@ -107,8 +129,8 @@
             let sr_no = $(this).closest('tbody').find('tr.details-row');
             $(details_row).remove();
             calcSr_no(sr_no);
-            sum();
-            
+            $('[name="price"]').trigger('blur');
+            $('[name="subtotal"]').trigger('change');
         }
         else {
             alert("This row can't be removed");
@@ -118,11 +140,32 @@
     $(document.body).on('blur', '[name="price"]', function (e) {
         e.preventDefault();
         let this_value = $(this).val();
-        sum();
-        
+        const sum_price = sub_total();
+        $('#subtotal').val(sum_price);
+        $('[name="subtotal"]').trigger('change');
+        $('[name="discount"]').trigger('blur');
+    });
+    
+    $(document.body).on('change', '[name="subtotal"]', function (e) {
+        let sum_price = $('#subtotal').val();
+        let igst ;
+        if($('#IGST').length !== 0){
+            igst = $('#IGST').val();
+        }
+        else if($('#SGST').length !==0 && $('#CGST').length !== 0 ){
+            igst =  parseInt($('#SGST').val()) + parseInt($('#CGST').val())
+        }
+        let total = calcGst(igst,sum_price);
+        $('#total').val(total);
     });
 
-    function sum() {
+    $(document.body).on('blur', '[name="discount"]', function (e) {
+        let discount_price =  parseFloat($(this).val());
+        const discounted_price = discount(discount_price);
+        $('#subtotal').val(discounted_price);
+    });
+
+    function sub_total() {
         let price_array = new Array(0);
         let price = $('[name="price"]').toArray();
         for (let index = 0; index < price.length; index++) {
@@ -135,9 +178,22 @@
             // }
             price_array.push(parseFloat(value));
         }
-        let sum_price = price_array.reduce((a,b)=> a+b ,0);
-        $('#total').val(sum_price);
+        let sum_price = price_array.reduce((a, b) => a + b, 0);
+        return sum_price;
     }
+
+    function calcGst(igst, sum_price){
+        let this_igst = (parseFloat(sum_price)*(parseInt(igst)) / 100);
+        return parseFloat(sum_price) + this_igst;
+    }
+
+    function discount(discount_price){
+        let subtotal = parseFloat($('#subtotal').val());
+        return (subtotal - discount_price);
+
+    }
+
+
 
 
 })(jQuery);
