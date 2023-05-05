@@ -27,3 +27,8 @@ if (!defined("ROOT_URL")) {
 if(!defined('TIMEZONE_IN')){
     define('TIMEZONE_IN','Asia/Kolkata');
 }
+//pdf images path 
+if(!defined('PDF_IMAGES')){
+    $pdf_images = ROOT_URL . 'assets/images/pdf/';
+    define('PDF_IMAGES',$pdf_images);
+}

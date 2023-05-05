@@ -25,6 +25,17 @@ class Invoice
         }
     }
 
+    function get_all_Details_ByID($id)
+    {
+        $sql = "SELECT * FROM " . INVOICE_INVOICES ." WHERE invoiceInvoices_ID='".$id."'";
+        $res = $this->db->connect()->query($sql);
+        if ($res->num_rows > 0) {
+            return $res;
+        } else {
+            return false;
+        }
+    }
+
 
 
     private function get_invoiceInvoices_Info_byID($id)
@@ -77,11 +88,13 @@ class Invoice
             $old_json = $this->get_invoiceInvoices_Info_byID($id);
             $old_array = json_decode($old_json, true) ;
             $new_array = json_decode($invoice_data, true) ;
-            $empty_arr = array();
+            // $empty_arr = array();
             // print_r($old_array);
             // print_r($new_array);
-            array_push($empty_arr,$old_array);
-            array_push($empty_arr,$new_array);
+            // array_push($empty_arr,$old_array);
+            // array_push($empty_arr,$new_array);
+            $empty_arr = array_merge($old_array,$new_array);
+            print_r($empty_arr);
             $more_than_one_json = json_encode($empty_arr);
             $this->Update_Db($more_than_one_json,$id);
         }

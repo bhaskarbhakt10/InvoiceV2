@@ -48,6 +48,7 @@
                         ?>
                         <a class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Client" href="index.php?page=invoice-edit-clients&<?php echo $client_id_query ;?>"><i class="fa-duotone fa-pen-to-square"></i></a>
                         <a class="btn btn-outline-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Generate Invoice" href="index.php?page=invoice-generate-perfoma&<?php echo $client_id_query ;?>"><i class="fa-duotone fa-file-invoice"></i></a>
+                        <a class="btn btn-outline-info" data-bs-toggle="tooltip" data-bs-placement="top" title=" View Proforma" href="index.php?page=invoice-list-proforma&<?php echo $client_id_query ;?>"><i class="fa-duotone fa-arrow-up-right-from-square"></i></a>
                         <a class="btn btn-outline-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Client" data-delete="<?php echo $client_id;?>"><i class="fa-duotone fa-trash"></i></a>
                     </td>
                 </tr>

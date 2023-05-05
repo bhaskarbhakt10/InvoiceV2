@@ -29,8 +29,8 @@ $client_id_fromdb = $details['InvoiceClient_ID'];
                 </div>
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label for="performa-service-number" class="form-label">Select a Service</label>
-                        <select name="performa-service-number" id="performa-service" class="form-select form-field">
+                        <label for="performa-service" class="form-label">Select a Service</label>
+                        <select name="performa-service" id="performa-service" class="form-select form-field">
                             <option value="">None</option>
                             <option value="SMO">SMO</option>
                             <option value="SEO">SEO</option>
