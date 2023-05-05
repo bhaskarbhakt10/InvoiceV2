@@ -99,7 +99,7 @@
     $(".datepicker").datepicker({
         changeMonth: true,
         changeYear: true,
-        dateFormat: 'dd-mm-yy'
+        dateFormat: 'dd.mm.yy'
     });
 
     $(document.body).on('click', '.add-row', function (e) {

@@ -7,16 +7,18 @@ $cgst = $d['CGST'];
 $sgst = $d['SGST'];
 $igst = $d['IGST'];
 $currency = $d['country-currency'];
+$client_id_fromdb = $details['InvoiceClient_ID'];
 ?>
 
 <div class="container">
     <div class="form-wrapper">
         <form action="<?php echo ROOT_URL_ACTION . 'add-invoice.php'; ?>" method="POST" id="gen-invoice-form">
+        <input type="hidden" name="client_id" value="<?php echo $client_id_fromdb; ?>">
             <div class="row">
                 <div class="col-md-3">
                     <div class="mb-3">
                         <label for="performa-number" class="form-label">Perfoma Number</label>
-                        <input type="text" name="performa-number" id="performa-number" class="form-control form-field">
+                        <input type="text" name="performa-number" id="performa-number" class="form-control form-field" readonly value="<?php echo $invoice->generate_Performa_number($client_id_fromdb);?>">
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -28,7 +30,7 @@ $currency = $d['country-currency'];
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="performa-service-number" class="form-label">Select a Service</label>
-                        <select name="performa-service-number" id="performa-service-number" class="form-select form-field">
+                        <select name="performa-service-number" id="performa-service" class="form-select form-field">
                             <option value="">None</option>
                             <option value="SMO">SMO</option>
                             <option value="SEO">SEO</option>

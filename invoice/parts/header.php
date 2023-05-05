@@ -36,7 +36,9 @@
     }
 
     require_once ROOT_PATH_CLASS .'client/class.client.php';
+    require_once ROOT_PATH_CLASS .'invoices/class.invoice.php';
     $client = new Client();
+    $invoice = new Invoice();
 
     ?>
 </head>
