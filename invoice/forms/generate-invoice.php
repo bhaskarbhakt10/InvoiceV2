@@ -47,10 +47,10 @@ $currency = $d['country-currency'];
                     <div class="description-wrapper" id="details">
                         <table class="table">
                             <thead>
-                                <th>Sr No</th>
-                                <th>Description</th>
-                                <th>Price</th>
-                                <th>Actions</th>
+                                <th class="w-7">Sr No</th>
+                                <th class="w-45">Description</th>
+                                <th class="w-35">Price</th>
+                                <th class="w-13">Actions</th>
                             </thead>
                             <tbody>
                                 <tr class="details-row">
@@ -93,16 +93,39 @@ $currency = $d['country-currency'];
                                         <td></td>
                                         <td>
                                             <?php if (!empty($cgst) && strcasecmp($cgst, "n/a") !== 0) { ?>
-                                                <label for="CGST" class="">CGST</label>
-                                                <input type="text" name="CGST" id="CGST" class="form-control form-field" value="<?php echo $cgst; ?>" readonly>
+                                                <div class="d-flex gap-10 flex-wrap mb-3">
+                                                    <div class="w-45">
+                                                        <label for="CGST" class="form-label ">CGST</label>
+                                                        <input type="text" name="CGST" id="CGST" class="form-control form-field" value="<?php echo $cgst; ?>" readonly>
+                                                    </div>
+                                                    <div class="w-45">
+                                                        <label for="CGST-value" class="form-label ">CGST in <?php echo $currency; ?></label>
+                                                        <input type="text" name="CGST-value" id="CGST-value" class="form-control form-field" value="0" readonly>
+                                                    </div>
+                                                </div>
                                             <?php } ?>
                                             <?php if (!empty($sgst) && strcasecmp($sgst, "n/a") !== 0) { ?>
-                                                <label for="SGST" class="form-label">SGST</label>
-                                                <input type="text" name="SGST" id="SGST" class="form-control form-field" value="<?php echo $sgst; ?>" readonly>
+                                                <div class="d-flex gap-10 flex-wrap">
+                                                    <div class="w-45">
+                                                        <label for="SGST" class="form-label">SGST</label>
+                                                        <input type="text" name="SGST" id="SGST" class="form-control form-field" value="<?php echo $sgst; ?>" readonly>
+                                                    </div>
+                                                    <div class="w-45">
+                                                        <label for="SGST-value" class="form-label">SGST in <?php echo $currency; ?></label>
+                                                        <input type="text" name="SGST-value" id="SGST-value" class="form-control form-field" value="0" readonly>
+                                                    </div>
+                                                </div>
                                             <?php } ?>
                                             <?php if (!empty($igst) && strcasecmp($igst, "n/a") !== 0) { ?>
-                                                <label for="IGST" class="form-label">IGST</label>
-                                                <input type="text" name="IGST" id="IGST" class="form-control form-field" value="<?php echo $igst; ?>" readonly>
+                                                <div class="d-flex gap-10 flex-wrap">
+                                                    <div class="w-45">
+                                                        <label for="IGST" class="form-label">IGST</label>
+                                                        <input type="text" name="IGST" id="IGST" class="form-control form-field" value="<?php echo $igst; ?>" readonly>
+                                                    </div>
+                                                    <div class="w-45">
+                                                        <label for="IGST-value" class="form-label">IGST in <?php echo $currency; ?></label>
+                                                        <input type="text" name="IGST-value" id="IGST-value" class="form-control form-field" value="0" readonly>
+                                                    </div>
                                             <?php } ?>
                                         </td>
                                         <td></td>

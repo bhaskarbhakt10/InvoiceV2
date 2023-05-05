@@ -149,13 +149,20 @@
     $(document.body).on('change', '[name="subtotal"]', function (e) {
         let sum_price = $('#subtotal').val();
         let igst ;
+        let total;
         if($('#IGST').length !== 0){
             igst = $('#IGST').val();
+            calcIGST(igst, sum_price);
+            total = calcGst(igst,sum_price);
         }
         else if($('#SGST').length !==0 && $('#CGST').length !== 0 ){
-            igst =  parseInt($('#SGST').val()) + parseInt($('#CGST').val())
+            igst =  parseInt($('#SGST').val()) + parseInt($('#CGST').val());
+            total = calcGst(igst,sum_price);
+            let sgst = parseInt($('#SGST').val()) ;
+            calcCGST(sgst , sum_price)
+            let cgst = parseInt($('#CGST').val());
+            calcSGST(cgst , sum_price);
         }
-        let total = calcGst(igst,sum_price);
         $('#total').val(total);
     });
 
@@ -185,6 +192,18 @@
     function calcGst(igst, sum_price){
         let this_igst = (parseFloat(sum_price)*(parseInt(igst)) / 100);
         return parseFloat(sum_price) + this_igst;
+    }
+    function calcCGST(igst, sum_price){
+        let this_cgst = (parseFloat(sum_price)*(parseInt(igst)) / 100);
+        $('#CGST-value').val(this_cgst);
+    }
+    function calcSGST(igst, sum_price){
+        let this_sgst = (parseFloat(sum_price)*(parseInt(igst)) / 100);
+        $('#SGST-value').val(this_sgst);
+    }
+    function calcIGST(igst, sum_price){
+        let this_igst = (parseFloat(sum_price)*(parseInt(igst)) / 100);
+        $('#IGST-value').val(this_igst);
     }
 
     function discount(discount_price){
