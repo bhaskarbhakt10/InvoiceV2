@@ -11,6 +11,7 @@ if (array_key_exists('id', $_GET) && array_key_exists('client-id', $_GET)) {
     exit();
 }
 
+
 $invoice = new Invoice();
 $client = new Client();
 
@@ -51,17 +52,27 @@ if (!empty($invoice_info_json)) {
                 $SGST = $info_arrvalue['SGST'];
                 $SGST_value = $info_arrvalue['SGST-value'];
             }
-
+            $is_perfoma = $info_arrvalue['is_perfoma'];
             $is_invoice = $info_arrvalue['is_invoice'] ;
             $invoice_number = $info_arrvalue['invoice_number'] ;
+            $is_paid = $info_arrvalue['is_paid'] ;
 
+            $proforma_text = "Proforma";
+            $proforma_heading = "PROFORMA INVOICE";
+            $proforma_footer = "Proforma";
+            if($is_perfoma === 0 && $is_invoice === 1 && $is_paid === 1){
+                $perfoma_number = $invoice_number;
+                $proforma_text = "Tax Invoice";
+                $proforma_heading = "INVOICE";
+                $proforma_footer = "invoice";
+            }
 
             $total = $info_arrvalue['total'];
         }
 
     }
 }
-
+// echo $proforma_text;
 if(!empty($client_details_json)){
     $client_details_arr = json_decode($client_details_json, true);
     // print_r($client_details_arr);
@@ -147,8 +158,7 @@ $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('NUIT SOLUTIONS');
-$pdf->SetTitle('TCPDF Example 003');
-$pdf->SetSubject('TCPDF Tutorial');
+$pdf->SetTitle($client_name);
 
 // set default header data
 $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
@@ -195,7 +205,7 @@ $main_body .= '<tr>';
 $main_body .= '<td class="w-10"></td>';
 $main_body .= '<td class="w-80"><table><tr><td class="w-70">';
 
-$main_body .= '<table class="w-100"><tbody><tr><td><b>Proforma </b>'.$perfoma_number.'</td></tr><tr><td><b>Invoice Date: </b>'.$dated_invoice.'<br></td></tr><tr><td><b>Invoiced To</b><br>'.$client_address.'</td></tr></tbody></table>';
+$main_body .= '<table class="w-100"><tbody><tr><td><b>'.$proforma_text.' </b>'.$perfoma_number.'</td></tr><tr><td><b>Invoice Date: </b>'.$dated_invoice.'<br></td></tr><tr><td><b>Invoiced To</b><br>' .$client_name .'<br>'. $client_address.'</td></tr></tbody></table>';
 $main_body .= '</td>';
 $main_body .= '<td class="w-30">';
 $main_body .= '<table class="w-100"><tbody><tr><td class="text-right"><b>NUIT SOLUTIONS</b><br>Sanghamitra, Anmol Nagar<br>Naigaon West<br>District Palghar 401207<br>GSTIN 27APXPJ2589P2ZM</td></tr></tbody></table>';
@@ -203,7 +213,7 @@ $main_body .= '<table class="w-100"><tbody><tr><td class="text-right"><b>NUIT SO
 $main_body .= '</td>';
 $main_body .='</tr></table><div></div>';
 
-$main_body .= '<table><tr><th class="text-center"><b>PROFORMA INVOICE</b></th></tr></table><div></div>';
+$main_body .= '<table><tr><th class="text-center"><b>'.$proforma_heading.'</b></th></tr></table><div></div>';
 $main_body .= '<table border="1" class="w-100"><tr><th class="text-center w-10"><b>SR NO.</b></th><th class="text-center w-50"><b>PARTICULARS</b></th><th class="text-center w-20"><b>SAC CODE</b></th><th class="text-center w-20"><b>AMOUNT<br>(in INR)</b></th></tr>';
 $main_body .= $description_row;
 $main_body .= '<tr><td></td><td></td><td class="text-center text-indent-left"><b>Sub Total</b></td>'.$subtotal_data.'</tr>';
@@ -225,8 +235,14 @@ $pdf->writeHTML($main_body, true, false, true, false, '');
 // ---------------------------------------------------------
 
 //Close and output PDF document
-$pdf->Output('example_003.pdf', 'I');
 
+if(array_key_exists('trigger', $_GET)){
+    $pdf->Output($client_name.'.pdf', 'D');
+    $download = $_GET['trigger'];
+}
+else{
+    $pdf->Output($client_name.'.pdf', 'I');
+}
 //============================================================+
 // END OF FILE
 //============================================================+

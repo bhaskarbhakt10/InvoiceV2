@@ -35,15 +35,15 @@ $result = $invoice->get_all_Details_ByID($client_id);
                     <td><?php echo $detail['performa-service'] ?></td>
                     <td><?php echo $detail['is_invoice'] === 0 ? 'No' : 'Yes' ?></td>
                     <td>
-                        <a href="<?php echo ROOT_URL .'invoice/invoice-pdf.php?id='.$detail['uniqueID'].'&client-id='.$detail['client_id'] ?>" class="btn btn-outline-warning" id="view-pdf"><i class="fa-duotone fa-file-pdf"></i></a>
+                        <a href="<?php echo ROOT_URL .'invoice/invoice-pdf.php?id='.$detail['uniqueID'].'&client-id='.$detail['client_id']; ?>" class="btn btn-outline-warning view-pdf" id="view-pdf"><i class="fa-duotone fa-file-pdf"></i></a>
                         <?php
                         if ($detail['is_invoice'] === 0) {
                         ?>
-                            <a href="" class="btn btn-outline-primary" id="invoice"><i class="fa-duotone fa-file-invoice"></i></a>
+                            <a href="" class="btn btn-outline-primary invoice" id="invoice"  data-uniqid="<?php echo $detail['uniqueID'];?>" data-id="<?php echo $detail['client_id']; ?>"><i class="fa-duotone fa-file-invoice"></i></a>
                         <?php
                         } else {
                         ?>
-                            <a href="" class="btn btn-outline-success" id="download"><i class="fa-duotone fa-download"></i></a>
+                            <a href="<?php echo ROOT_URL .'invoice/invoice-pdf.php?id='.$detail['uniqueID'].'&client-id='.$detail['client_id']; ?>&trigger=download" class="btn btn-outline-success download" id="download"><i class="fa-duotone fa-download"></i></a>
                         <?php
                         }
                         ?>
@@ -54,4 +54,6 @@ $result = $invoice->get_all_Details_ByID($client_id);
         }
         ?>
     </tbody>
+</table>
+<input type="hidden" value="<?php echo ROOT_URL_ACTION  . 'makeitinvoice.php';?>" id="makeit-invoice">
     <?php

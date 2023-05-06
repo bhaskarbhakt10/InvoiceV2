@@ -27,7 +27,7 @@ class Invoice
 
     function get_all_Details_ByID($id)
     {
-        $sql = "SELECT * FROM " . INVOICE_INVOICES ." WHERE invoiceInvoices_ID='".$id."'";
+        $sql = "SELECT * FROM " . INVOICE_INVOICES . " WHERE invoiceInvoices_ID='" . $id . "'";
         $res = $this->db->connect()->query($sql);
         if ($res->num_rows > 0) {
             return $res;
@@ -40,10 +40,10 @@ class Invoice
 
     private function get_invoiceInvoices_Info_byID($id)
     {
-        $sql = "SELECT `invoiceInvoices_Info` FROM " . INVOICE_INVOICES . " WHERE invoiceInvoices_ID ='".$id."'";
+        $sql = "SELECT `invoiceInvoices_Info` FROM " . INVOICE_INVOICES . " WHERE invoiceInvoices_ID ='" . $id . "'";
         $res = $this->db->connect()->query($sql);
         if ($res->num_rows > 0) {
-            while($row = $res->fetch_assoc()){
+            while ($row = $res->fetch_assoc()) {
                 return $row['invoiceInvoices_Info'];
             }
         } else {
@@ -51,13 +51,13 @@ class Invoice
         }
     }
 
-    public function generate_Performa_number( $id )
+    public function generate_Performa_number($id)
     {
         $perfoma_string = "PI/#";
         date_default_timezone_set(TIMEZONE_IN);
         $date = new DateTime();
         if ($date->format('m') <= 6) {
-            $financial_year = ($date->format('Y')-1) . '-' . $date->format('y');
+            $financial_year = ($date->format('Y') - 1) . '-' . $date->format('y');
         } else {
             $financial_year = $date->format('Y') . '-' . ($date->format('y') + 1);
         }
@@ -67,36 +67,131 @@ class Invoice
         } else {
             $old_json = $this->get_invoiceInvoices_Info_byID($id);
             $old_array = json_decode($old_json, true);
-            $perfoma_number = count($old_array) +1;
+            $perfoma_number = count($old_array) + 1;
             $perfoma_string .= sprintf('%03d', $perfoma_number);
         }
-        $perfoma_string .='/'. $financial_year;
-        echo $perfoma_string ;
+        $perfoma_string .= '/' . $financial_year;
+        return $perfoma_string;
     }
 
-    private function Update_Db($what_to_update,$column_to_update,){
-        $sql = "UPDATE " . INVOICE_INVOICES ." SET invoiceInvoices_Info ='".$what_to_update."' WHERE invoiceInvoices_ID='".$column_to_update."'";
+    private function Update_Db($what_to_update, $column_to_update,)
+    {
+        $sql = "UPDATE " . INVOICE_INVOICES . " SET invoiceInvoices_Info ='" . $what_to_update . "' WHERE invoiceInvoices_ID='" . $column_to_update . "'";
         $res = $this->db->connect()->query($sql);
     }
 
-    function update_invoiceInvoices_Info($invoice_data,$id)
-    { 
-        if(empty($this->get_invoiceInvoices_Info_byID($id))){
-            $this->Update_Db($invoice_data,$id);
-        }
-        else{
+    function update_invoiceInvoices_Info($invoice_data, $id)
+    {
+        if (empty($this->get_invoiceInvoices_Info_byID($id))) {
+            $this->Update_Db($invoice_data, $id);
+        } else {
             $old_json = $this->get_invoiceInvoices_Info_byID($id);
-            $old_array = json_decode($old_json, true) ;
-            $new_array = json_decode($invoice_data, true) ;
+            $old_array = json_decode($old_json, true);
+            $new_array = json_decode($invoice_data, true);
             // $empty_arr = array();
             // print_r($old_array);
             // print_r($new_array);
             // array_push($empty_arr,$old_array);
             // array_push($empty_arr,$new_array);
-            $empty_arr = array_merge($old_array,$new_array);
-            print_r($empty_arr);
+            $empty_arr = array_merge($old_array, $new_array);
+            // print_r($empty_arr);
             $more_than_one_json = json_encode($empty_arr);
-            $this->Update_Db($more_than_one_json,$id);
+            $this->Update_Db($more_than_one_json, $id);
         }
     }
+
+
+    function getInvoiceId($client_id)
+    {
+        $Invoice_string = "#";
+        date_default_timezone_set(TIMEZONE_IN);
+        $date = new DateTime();
+        if ($date->format('m') <= 6) {
+            $financial_year = ($date->format('Y') - 1) . '-' . $date->format('y');
+        } else {
+            $financial_year = $date->format('Y') . '-' . ($date->format('y') + 1);
+        }
+        $results_json = $this->get_invoiceInvoices_Info_byID($client_id);
+        $InvoiceNumberArray = array();
+        if (!empty($results_json)) {
+            $results_arr = json_decode($results_json, true);
+            foreach ($results_arr as $res) {
+                // print_r($res['performa-number']);
+                if ($res['invoice_number'] !== '') {
+                    array_push($InvoiceNumberArray, $res['invoice_number']);
+                }
+            }
+        }
+        // print_r($InvoiceNumberArray);
+        if (count($InvoiceNumberArray) > 1) {
+            $last_invoice_number = end($InvoiceNumberArray);
+            $exploded_last_number = explode('/', $last_invoice_number);
+            $invoice_prev_number = ltrim($exploded_last_number[0], '#');
+            $invoice_number = (int)$invoice_prev_number + 1;
+        } else {
+            $invoice_number = 1;
+        }
+        // echo $invoice_number;
+        $Invoice_string .= sprintf('%03d', $invoice_number);
+        return $Invoice_string . '/' . $financial_year;
+    }
+
+
+
+
+    function makeitInvoice($client_id, $unique_id)
+    {
+        $results = $this->get_all_Details_ByID($client_id);
+        // print_r($results);
+        if ($results->num_rows > 0) {
+            while ($row = $results->fetch_assoc()) {
+                $info_json = $row['invoiceInvoices_Info'];
+            }
+        }
+
+        if (!empty($info_json)) {
+            $info_arr = json_decode($info_json, true);
+            foreach ($info_arr as $infoKey => $info) {
+                if ($info['uniqueID'] === $unique_id) {
+                    // print_r("========");
+                    $key = $infoKey;
+                    // print_r("========");
+                }
+            }
+            // print_r("++++" . $key);
+            // print_r($info_arr[$key]['is_perfoma']);
+            if ($info_arr[$key]['is_perfoma'] === 1 && $info_arr[$key]['is_invoice'] === 0 && $info_arr[$key]['is_paid'] === 0) {
+                $invoice_number__ = $this->getInvoiceId($client_id);
+                // print_r(gettype($invoice_number__));
+                $info_arr[$key]['is_perfoma'] = 0;
+                $info_arr[$key]['is_invoice'] = 1;
+                $info_arr[$key]['invoice_number'] = $invoice_number__;
+                // print_r($this->getInvoiceId($client_id, $unique_id));
+                $info_arr[$key]['is_paid'] = 1;
+            }
+            // print_r("oooooooooooooooo");
+            $infoJson = json_encode($info_arr);
+            $this->Update_Db($infoJson, $client_id);
+            return true;
+        }
+    }
+
+
+    /*
+    function replaceArray($client_id, $unique_id){
+        $newArray = $this->makeitInvoice($client_id, $unique_id);
+        echo "--------------";
+        print_r($newArray);
+        echo "--------------";
+        $oldJSON = $this->get_invoiceInvoices_Info_byID($client_id);
+        $oldArray = json_decode($oldJSON, true);
+        foreach($oldArray as $key => $old){
+            // print_r($old);
+            if($old['performa-number'] === $newArray['performa-number']){
+                $needle = $key;
+            }
+        }
+       
+    }
+    */
 }
