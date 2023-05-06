@@ -14,7 +14,9 @@
         $all_clients = $client->get_all_clients();
         if($all_clients->num_rows>0){
             while($row = $all_clients->fetch_assoc()){
+                echo "<pre>";
                 print_r($row);
+                echo "</pre>";
                 ?>
                 <tr>
                     <td><?php echo $row['InvoiceClient_SrNo'];?></td>

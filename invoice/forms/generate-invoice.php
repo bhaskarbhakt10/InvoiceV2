@@ -1,8 +1,8 @@
 <?php
 $client_id = $_GET['client-id'];
 $details = $client->get_client_details_by_id($client_id);
-print_r($details);
 $d = json_decode($details['InvoiceClient_Info'], true);
+print_r(gettype($details['InvoiceClient_Info']));
 $cgst = $d['CGST'];
 $sgst = $d['SGST'];
 $igst = $d['IGST'];
