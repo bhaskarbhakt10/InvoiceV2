@@ -84,4 +84,15 @@ class Client
             return false;
         }
     }
+
+    function delClient_by_id($client_id){
+        $sql = "UPDATE " . INVOICE_CLIENT . " SET InvoiceClient_IsActive = 0 WHERE InvoiceClient_ID='".$client_id."'";
+        $res = $this->db->connect()->query($sql);
+        if($res){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

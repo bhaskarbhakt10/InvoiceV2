@@ -10,32 +10,33 @@
     </thead>
     <tbody>
         <?php
-        
+
         $all_clients = $client->get_all_clients();
-        if($all_clients->num_rows>0){
-            while($row = $all_clients->fetch_assoc()){
-                echo "<pre>";
-                print_r($row);
-                echo "</pre>";
-                ?>
+        if(!empty($all_clients)){
+        if ($all_clients->num_rows > 0) {
+            while ($row = $all_clients->fetch_assoc()) {
+                // echo "<pre>";
+                // print_r($row);
+                // echo "</pre>";
+        ?>
                 <tr>
-                    <td><?php echo $row['InvoiceClient_SrNo'];?></td>
+                    <td><?php echo $row['InvoiceClient_SrNo']; ?></td>
                     <td>
-                        <?php 
+                        <?php
                         $client_info = $row['InvoiceClient_Info'];
                         $client_arr = json_decode($client_info, true);
                         echo $client_arr['client-name'];
                         ?>
                     </td>
                     <td>
-                        <?php 
+                        <?php
                         $client_info = $row['InvoiceClient_Info'];
                         $client_arr = json_decode($client_info, true);
-                        echo $client_arr['address-country-code']." ".$client_arr['client-phone-number'];
+                        echo $client_arr['address-country-code'] . " " . $client_arr['client-phone-number'];
                         ?>
                     </td>
                     <td>
-                        <?php 
+                        <?php
                         $client_info = $row['InvoiceClient_Info'];
                         $client_arr = json_decode($client_info, true);
                         echo $client_arr['client-email'];
@@ -48,16 +49,19 @@
                             'client-id' => $row['InvoiceClient_ID']
                         ));
                         ?>
-                        <a class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Client" href="index.php?page=invoice-edit-clients&<?php echo $client_id_query ;?>"><i class="fa-duotone fa-pen-to-square"></i></a>
-                        <a class="btn btn-outline-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Generate Invoice" href="index.php?page=invoice-generate-perfoma&<?php echo $client_id_query ;?>"><i class="fa-duotone fa-file-invoice"></i></a>
-                        <a class="btn btn-outline-info" data-bs-toggle="tooltip" data-bs-placement="top" title=" View Proforma" href="index.php?page=invoice-list-proforma&<?php echo $client_id_query ;?>"><i class="fa-duotone fa-arrow-up-right-from-square"></i></a>
-                        <a class="btn btn-outline-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Client" data-delete="<?php echo $client_id;?>"><i class="fa-duotone fa-trash"></i></a>
+                        <a class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Client" href="index.php?page=invoice-edit-clients&<?php echo $client_id_query; ?>"><i class="fa-duotone fa-pen-to-square"></i></a>
+                        <a class="btn btn-outline-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Generate Invoice" href="index.php?page=invoice-generate-perfoma&<?php echo $client_id_query; ?>"><i class="fa-duotone fa-file-invoice"></i></a>
+                        <a class="btn btn-outline-info" data-bs-toggle="tooltip" data-bs-placement="top" title=" View Proforma" href="index.php?page=invoice-list-proforma&<?php echo $client_id_query; ?>"><i class="fa-duotone fa-arrow-up-right-from-square"></i></a>
+                        <a class="btn btn-outline-danger delete" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Client" data-delete="<?php echo $client_id; ?>"><i class="fa-duotone fa-trash"></i></a>
                     </td>
                 </tr>
-                <?php
+        <?php
             }
         }
+    }
         ?>
     </tbody>
-    <tfoot></tfoot>
+    <tfoot>
+        <input type="hidden" id="ajax_url" value="<?php echo ROOT_URL_ACTION . 'softdel.php' ?>">
+    </tfoot>
 </table>
