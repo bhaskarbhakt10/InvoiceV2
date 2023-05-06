@@ -1,4 +1,4 @@
-<div class="container">
+
     <form action="<?php echo ROOT_URL_ACTION . 'add-client.php'; ?>" method="POST" class="form" id="add-client-form">
         <fieldset>
             <div class="form-wrapper">
@@ -146,4 +146,3 @@
             </div>
         </fieldset>
     </form>
-</div>

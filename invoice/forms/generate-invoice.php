@@ -10,7 +10,7 @@ $currency = $d['country-currency'];
 $client_id_fromdb = $details['InvoiceClient_ID'];
 ?>
 
-<div class="container">
+
     <div class="form-wrapper">
         <form action="<?php echo ROOT_URL_ACTION . 'add-invoice.php'; ?>" method="POST" id="gen-invoice-form">
         <input type="hidden" name="client_id" value="<?php echo $client_id_fromdb; ?>">
@@ -152,4 +152,3 @@ $client_id_fromdb = $details['InvoiceClient_ID'];
             </div>
         </form>
     </div>
-</div>

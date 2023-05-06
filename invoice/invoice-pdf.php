@@ -12,13 +12,17 @@ else{
     exit();
 }
 
+$invoice = new Invoice();
+$client = new Client();
 
 
 
-// Extend the TCPDF class to create custom Header and Footer
+
+
+
 class MYPDF extends TCPDF {
 
-    //Page header
+
     public function Header() {
         $header_image = PDF_IMAGES .'header.png';
         $html = '';

@@ -8,6 +8,7 @@ if (array_key_exists('page', $_GET)) {
     $page = $_GET['page'];
 ?>
     <main class="<?php echo $page; ?>">
+        <div class="container-fluid">
         <?php
         if (in_array($page  . ".php", $all_dir)) {
             foreach ($all_dir as $d) {
@@ -19,6 +20,7 @@ if (array_key_exists('page', $_GET)) {
             echo "no file";
         }
         ?>
+        </div>
     </main>
 <?php
 }
