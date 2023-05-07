@@ -16,10 +16,10 @@ class Client
     public function get_details($client_info)
     {
         $this->client_info = $client_info;
-        echo $client_id = $this->client_insert();
+        $client_id = $this->client_insert();
         if ($client_id !== false) {
             $sql = "INSERT INTO " . INVOICE_INVOICES . " (invoiceInvoices_ID) VALUES ('" . $client_id . "')";
-            echo $sql;
+            // echo $sql;
             $res = $this->db->connect()->query($sql);
             if ($res === true) {
                 return true;

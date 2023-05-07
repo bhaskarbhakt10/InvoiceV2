@@ -78,7 +78,7 @@
                                 <div class="address-text" data-ref="use-text-box-yes">
                                     <div class="text-address mb-3">
                                         <label for="" class="form-label">Input address</label>
-                                        <textarea name="text-address-box" id="text-address-box" cols="30" rows="10" class="form-control form-field" required></textarea>
+                                        <textarea name="text-address-box" id="text-address-box" cols="30" rows="2" class="form-control form-field" required placeholder="Use <br> to break the address into multiple lines "></textarea>
                                     </div>
                                 </div>
                                 <div class="address-tax" id="address-tax">

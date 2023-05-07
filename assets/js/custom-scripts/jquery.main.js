@@ -82,12 +82,13 @@
             igst__.val("18%");
             cgst__.val('N/A');
             sgst__.val('N/A');
-            gstin__check(country_l);
+            // gstin__check(country_l);
         }
         else if (this_input.includes(state_l) === true && this_input.includes(country_l) === true) {
             igst__.val("N/A");
             cgst__.val('9%');
             sgst__.val('9%');
+            gstin__check(country_l);
         }
         else {
             igst__.val("N/A");
