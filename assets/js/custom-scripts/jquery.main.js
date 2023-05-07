@@ -55,7 +55,7 @@
     
     function gstin__check(this_value){
         let cmp_country = "India";
-        if (this_value.toLowerCase() === cmp_country.toLowerCase()) {
+        if (this_value.toLowerCase() === cmp_country.toLowerCase() || this_value.includes(cmp_country.toLowerCase())) {
             $('#gstin').append(gstin);
         }
         else {
@@ -82,13 +82,14 @@
             igst__.val("18%");
             cgst__.val('N/A');
             sgst__.val('N/A');
-            // gstin__check(country_l);
+            gstin__check(this_input);
+           
         }
         else if (this_input.includes(state_l) === true && this_input.includes(country_l) === true) {
             igst__.val("N/A");
             cgst__.val('9%');
             sgst__.val('9%');
-            gstin__check(country_l);
+
         }
         else {
             igst__.val("N/A");
