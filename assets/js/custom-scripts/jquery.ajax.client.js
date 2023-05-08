@@ -24,6 +24,7 @@
             type: 'POST',
             data: data,
             success: function (data) {
+                // console.log(data);
                 let response = JSON.parse(data);
                 for (const key in response) {
                     if (response[key] === true) {
