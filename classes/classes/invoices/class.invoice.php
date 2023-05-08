@@ -84,6 +84,7 @@ class Invoice
     {
         if (empty($this->get_invoiceInvoices_Info_byID($id))) {
             $this->Update_Db($invoice_data, $id);
+            return true;
         } else {
             $old_json = $this->get_invoiceInvoices_Info_byID($id);
             $old_array = json_decode($old_json, true);
@@ -117,14 +118,18 @@ class Invoice
         if (!empty($results_json)) {
             $results_arr = json_decode($results_json, true);
             foreach ($results_arr as $res) {
-                // print_r($res['performa-number']);
-                if ($res['invoice_number'] !== '') {
+                // print_r($res['invoice_number']);
+                if (!empty($res['invoice_number'])) {
                     array_push($InvoiceNumberArray, $res['invoice_number']);
+                    // echo "not empty";
+                }
+                else{
+                    // echo "empty";
                 }
             }
         }
         // print_r($InvoiceNumberArray);
-        if (count($InvoiceNumberArray) > 1) {
+        if (!empty($InvoiceNumberArray)) {
             $last_invoice_number = end($InvoiceNumberArray);
             $exploded_last_number = explode('/', $last_invoice_number);
             $invoice_prev_number = ltrim($exploded_last_number[0], '#');

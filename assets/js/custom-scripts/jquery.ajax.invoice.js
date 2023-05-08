@@ -16,7 +16,7 @@
             type: 'POST',
             data: data,
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 let response = JSON.parse(data);
                 for (const key in response) {
                     if (response[key] === true) {
@@ -27,7 +27,9 @@
                         $(this_form)[0].reset();
                         $(this_form).prepend(success_html);
                         setTimeout(() => {
+
                             $('form .alert').remove();
+                            window.location.reload();
                         }, 3000);
                     }
                     if (response[key] === false) {
@@ -40,6 +42,7 @@
                         $('[name=textbox-usage]').trigger('change');
                         setTimeout(() => {
                             $('form .alert').remove();
+                            window.location.reload();
                         }, 3000);
                     }
                 }

@@ -79,12 +79,20 @@ if(!empty($client_details_json)){
     $client_name = $client_details_arr['client-name'];
     $textbox_useage = $client_details_arr['textbox-usage'];
     $client_address = '';
+    if(array_key_exists('input-city-check', $client_details_arr) && strcasecmp($client_details_arr['input-city-check'], 'on')===0){
+        
+        $city = $client_details_arr['input-city']." ";
+    }
+    else{
+        $city = $client_details_arr['address-country-city'];
+
+    }
     if(strcasecmp($textbox_useage,'yes') === 0 ){
         // echo $textbox_useage;
         $client_address .= $client_details_arr['text-address-box'];
     }
     else{
-        $client_address .= $client_details_arr['address-line-one'] . $client_details_arr['address-line-two'] .',<br>'.$client_details_arr['address-country-city'] . $client_details_arr['postal-code'] . ', ' . $client_details_arr['address-country-state'] . ', ' .$client_details_arr['address-country'];
+        $client_address .= $client_details_arr['address-line-one'] . $client_details_arr['address-line-two'] .',<br>'.$city . $client_details_arr['postal-code'] . ', ' . $client_details_arr['address-country-state'] . ', ' .$client_details_arr['address-country'];
     }
 }
 
