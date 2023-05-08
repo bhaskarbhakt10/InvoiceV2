@@ -74,7 +74,7 @@ class Invoice
         return $perfoma_string;
     }
 
-    private function Update_Db($what_to_update, $column_to_update,)
+    private function Update_Db($what_to_update, $column_to_update)
     {
         $sql = "UPDATE " . INVOICE_INVOICES . " SET invoiceInvoices_Info ='" . $what_to_update . "' WHERE invoiceInvoices_ID='" . $column_to_update . "'";
         $res = $this->db->connect()->query($sql);
@@ -96,7 +96,8 @@ class Invoice
             $empty_arr = array_merge($old_array, $new_array);
             // print_r($empty_arr);
             $more_than_one_json = json_encode($empty_arr);
-            $this->Update_Db($more_than_one_json, $id);
+            $res = $this->Update_Db($more_than_one_json, $id);
+            return true;
         }
     }
 

@@ -165,6 +165,9 @@
             let cgst = parseInt($('#CGST').val());
             calcSGST(cgst , sum_price);
         }
+        else{
+            total = sum_price;
+        }
         $('#total').val(total);
     });
 
@@ -172,6 +175,9 @@
         let discount_price =  parseFloat($(this).val());
         const discounted_price = discount(discount_price);
         $('#subtotal').val(discounted_price);
+        if($('#IGST').length === 0 && $('#SGST').length ===0 && $('#CGST').length === 0 ){
+            $('#total').val(discounted_price);
+        }
     });
 
     function sub_total() {

@@ -20,6 +20,7 @@ if (isset($_POST)) {
     $client = new Client();
     $results = $client->get_all_clients();
     $all_clients = array();
+    $response_array = array();
     if (!empty($results)) {
         if ($results->num_rows > 0) {
             while ($row = $results->fetch_assoc()) {
@@ -28,7 +29,6 @@ if (isset($_POST)) {
             }
         }
 
-        $response_array = array();
         foreach ($all_clients as $all) {
             if (strcasecmp($all['client-name'], $client_name) === 0 && strcasecmp($all['address-country-code'], $client_country_code) === 0 && strcasecmp($all['client-phone-number'], $client_phone_number) === 0 && strcasecmp($all['client-email'], $client_email) === 0) {
                 // echo "here228882";

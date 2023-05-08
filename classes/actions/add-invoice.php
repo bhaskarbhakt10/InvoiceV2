@@ -38,6 +38,13 @@ if(isset($_POST)){
     $invoice_data = json_encode($data_array_to_db);
     // print_r($invoice_data);
 
-    $invoice->update_invoiceInvoices_Info($invoice_data, $update_id);
+    $response_array = array();
+    if($invoice->update_invoiceInvoices_Info($invoice_data, $update_id) === true){
+        $response_array['response'] = true;
+    }
+    else{
+        $response_array['response'] = false;
+    }
 
+    echo json_encode($response_array);
 }
