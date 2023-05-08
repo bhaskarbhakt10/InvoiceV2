@@ -129,10 +129,33 @@ if(!empty($total)){
 
 class MYPDF extends TCPDF
 {
-
+    protected $invoice_or_profoma ;
+    function invoiceORprofoma($proforma_footer){
+        $this->invoice_or_profoma = $proforma_footer;
+    }
 
     public function Header()
-    {
+    {   
+        $bMargin = $this->getBreakMargin();
+
+        // Get current auto-page-break mode
+        $auto_page_break = $this->AutoPageBreak;
+
+        // Disable auto-page-break
+        $this->SetAutoPageBreak(false, 0);
+
+        // Define the path to the image that you want to use as watermark.
+        $img_file =  PDF_IMAGES . 'header.png';
+
+        // Render the image
+        $this->Image($img_file, 0, 0, 223, 280, '', '', '', false, 300, '', false, false, 0);
+
+        // Restore the auto-page-break status
+        $this->SetAutoPageBreak($auto_page_break, $bMargin);
+
+        // Set the starting point for the page content
+        $this->setPageMark();
+
         $header_image = PDF_IMAGES . 'header.png';
         $html = '';
         $html .= '<style>.header-image{width:950px;}</style>';
@@ -146,7 +169,7 @@ class MYPDF extends TCPDF
         $footer_image = PDF_IMAGES . 'footer.png';
         $html = '';
         $html .= '<style>.text-right{text-align:right;}ol{padding:0; line-height:0; list-style:}li{line-height:12px;}.blue{background-color:blue;}.red{background-color:red;}.w-10{width:10%;}.W-80{width:80%;}.font-10{font-size:10px;}.footer-image{width:980px; height:233px;}</style>';
-        $html .= '<table class=""><tr><td class="w-10"></td><td class="w-80"><table><tr><td><p class="text-right"><i>*This is an Electronic Proforma and hence needs no signature.</p></i><hr class="red"></td></tr><tr><td class="font-10"><b>NUIT Solutions proclaims 100% Non-Disclosure Agreement Guarantee to prevent unauthorized access of client-owned “Confidential Information”. We assert that it will never be used for any of our other clients</b></td></tr><tr><td class="font-10"><b class="">Payment Terms:</b><ol class=""><li>100% upfront amount is payable for domain and hosting services.</li><li>Renewal will be done only once payment received.</li><li>Domain, if not renewed in time may expire and be non-retrievable</li><li>Cheque payment /Online transfer/Cash payment accepted</li></ol><b>General Terms:</b><ol><li>Guarantee of security only if the administrative rights are held solely by NUIT Solutions.</li><li>No features will be added once the bill is finalised. Any additional feature will hold extra charge.</li><li>For any updates to feature, the minimum time to be given is 24 hrs.</li><li>NUIT Solutions is not responsible for copyright of content/images.</li></ol></td></tr></table></td><td class="w-10"></td></tr></table>';
+        $html .= '<table class=""><tr><td class="w-10"></td><td class="w-80"><table><tr><td><p class="text-right"><i>*This is an Electronic '.$this->invoice_or_profoma.' and hence needs no signature.</p></i><hr class="red"></td></tr><tr><td class="font-10"><b>NUIT Solutions proclaims 100% Non-Disclosure Agreement Guarantee to prevent unauthorized access of client-owned “Confidential Information”. We assert that it will never be used for any of our other clients</b></td></tr><tr><td class="font-10"><b class="">Payment Terms:</b><ol class=""><li>100% upfront amount is payable for domain and hosting services.</li><li>Renewal will be done only once payment received.</li><li>Domain, if not renewed in time may expire and be non-retrievable</li><li>Cheque payment /Online transfer/Cash payment accepted</li></ol><b>General Terms:</b><ol><li>Guarantee of security only if the administrative rights are held solely by NUIT Solutions.</li><li>No features will be added once the bill is finalised. Any additional feature will hold extra charge.</li><li>For any updates to feature, the minimum time to be given is 24 hrs.</li><li>NUIT Solutions is not responsible for copyright of content/images.</li></ol></td></tr></table></td><td class="w-10"></td></tr></table>';
         $html .= '<table class=""><tr><td><img src="' . $footer_image . '" class="footer-image"></td></tr></table>';
         $this->writeHTML($html, false, false, false, false, 'L');
     }
@@ -160,8 +183,6 @@ $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('NUIT SOLUTIONS');
 $pdf->SetTitle($client_name);
 
-// set default header data
-$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
 
 // set header and footer fonts
 $pdf->setHeaderFont(array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
@@ -228,6 +249,7 @@ $main_body .= '</tr>';
 $main_body .= '</tbody>';
 $main_body .= '</table>';
 
+$pdf->invoiceORprofoma($proforma_footer);
 
 // print a block of text using Write()
 // $pdf->Write(0, $main_body, '', 0, 'C', true, 0, false, false, 0);
