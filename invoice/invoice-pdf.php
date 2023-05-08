@@ -130,36 +130,33 @@ if(!empty($total)){
 class MYPDF extends TCPDF
 {
     protected $invoice_or_profoma ;
+    protected $watermark;
     function invoiceORprofoma($proforma_footer){
         $this->invoice_or_profoma = $proforma_footer;
     }
 
+    function watermark__($watermark){
+        $this->watermark = $watermark;
+    }
+
     public function Header()
     {   
-        $bMargin = $this->getBreakMargin();
-
-        // Get current auto-page-break mode
-        $auto_page_break = $this->AutoPageBreak;
-
-        // Disable auto-page-break
-        $this->SetAutoPageBreak(false, 0);
-
-        // Define the path to the image that you want to use as watermark.
-        $img_file =  PDF_IMAGES . 'header.png';
-
-        // Render the image
-        $this->Image($img_file, 0, 0, 223, 280, '', '', '', false, 300, '', false, false, 0);
-
-        // Restore the auto-page-break status
-        $this->SetAutoPageBreak($auto_page_break, $bMargin);
-
-        // Set the starting point for the page content
-        $this->setPageMark();
-
         $header_image = PDF_IMAGES . 'header.png';
         $html = '';
         $html .= '<style>.header-image{width:950px;}</style>';
         $html .= '<table class="blue"><tr><td ><img src="' . $header_image . '" class="header-image"></td></tr></table>';
+        
+        if($this->watermark === 1){
+            $bMargin = $this->getBreakMargin();
+            $auto_page_break = $this->AutoPageBreak;
+            $this->SetAutoPageBreak(false, 0);
+            $img_file =  PDF_IMAGES . 'paid.png';
+            $this->Image($img_file, 0, 0, 223, 280, '', '', '', false, 300, '', false, false, 0);
+            $this->SetAutoPageBreak($auto_page_break, $bMargin);
+            $this->setPageMark();
+        }
+        
+        
         $this->writeHTML($html, false, false, false, false, 'L');
     }
 
@@ -215,6 +212,7 @@ if (@file_exists(dirname(__FILE__) . '/lang/eng.php')) {
 $pdf->SetFont('times', '', 12);
 
 // add a page
+$pdf->watermark__($is_paid);
 $pdf->AddPage();
 
 // set some text to print
@@ -235,7 +233,7 @@ $main_body .= '</td>';
 $main_body .='</tr></table><div></div>';
 
 $main_body .= '<table><tr><th class="text-center"><b>'.$proforma_heading.'</b></th></tr></table><div></div>';
-$main_body .= '<table border="1" class="w-100"><tr><th class="text-center w-10"><b>SR NO.</b></th><th class="text-center w-50"><b>PARTICULARS</b></th><th class="text-center w-20"><b>SAC CODE</b></th><th class="text-center w-20"><b>AMOUNT<br>(in INR)</b></th></tr>';
+$main_body .= '<table border="1" class="w-100 "><tr><th class="text-center w-10"><b>SR NO.</b></th><th class="text-center w-50"><b>PARTICULARS</b></th><th class="text-center w-20"><b>SAC CODE</b></th><th class="text-center w-20"><b>AMOUNT<br>(in INR)</b></th></tr>';
 $main_body .= $description_row;
 $main_body .= '<tr><td></td><td></td><td class="text-center text-indent-left"><b>Sub Total</b></td>'.$subtotal_data.'</tr>';
 $main_body .= $igst_row;
