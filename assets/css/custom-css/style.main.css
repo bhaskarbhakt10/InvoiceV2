@@ -1,5 +1,5 @@
 body {
-  font-family: "Lato", "sans-serif";
+  font-family: "Roboto", "sans-serif";
   font-size: 16px;
   color: #353535;
   font-weight: 400;
@@ -11,12 +11,12 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Barlow", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 label.form-label {
   color: #353535;
-  font-family: "Lato", "sans-serif";
+  font-family: "Roboto", "sans-serif";
 }
 
 p {
@@ -436,7 +436,7 @@ ul {
   width: 40%;
   margin: auto;
   font-size: 16px;
-  font-family: "lato";
+  font-family: "Roboto";
 }
 
 .success>.success-message {}
