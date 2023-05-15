@@ -9,9 +9,10 @@ class Database{
     private $db_pass = "";
     ##local
     ##live
-    // private $db_name = "";
-    // private $db_user = "";
-    // private $db_pass = "";
+    // private $db_name = "u595440997_invoice";
+    // private $db_user = "u595440997_invoice";
+    // private $db_pass = "|Ex9ChXk";
+
     ##live
     
 
