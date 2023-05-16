@@ -74,6 +74,44 @@ class Invoice
         return $perfoma_string;
     }
 
+    public function newPerfoma()
+    {
+        $perfoma_string = "PI/#";
+        date_default_timezone_set(TIMEZONE_IN);
+        $date = new DateTime();
+        if ($date->format('m') <= 6) {
+            $financial_year = ($date->format('Y') - 1) . '-' . $date->format('y');
+        } else {
+            $financial_year = $date->format('Y') . '-' . ($date->format('y') + 1);
+        }
+        
+        // DB VALUES //
+        $sql = "SELECT invoiceInvoices_Info FROM ". INVOICE_INVOICES ;
+        $res = $this->db->connect()->query($sql);
+        $empty_array = array();
+        if($res->num_rows > 0 ){
+            while($row = $res->fetch_assoc()){
+                $all_array = json_decode($row['invoiceInvoices_Info'], true);
+                print_r($all_array);
+                if(is_countable($all_array)){
+                    array_push($empty_array, count($all_array));
+                }
+            }
+        }
+        
+        if( empty($empty_array)){
+            $new_perfoma = 1;
+        }
+        else{
+            $new_perfoma = array_sum($empty_array);
+            
+        }
+        $perfoma_string .= sprintf('%03d', $new_perfoma );
+        $perfoma_string .= '/' . $financial_year;
+    
+        return $perfoma_string;
+    }
+
     private function Update_Db($what_to_update, $column_to_update)
     {
         $sql = "UPDATE " . INVOICE_INVOICES . " SET invoiceInvoices_Info ='" . $what_to_update . "' WHERE invoiceInvoices_ID='" . $column_to_update . "'";

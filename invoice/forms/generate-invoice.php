@@ -8,6 +8,10 @@ $sgst = $d['SGST'];
 $igst = $d['IGST'];
 $currency = $d['country-currency'];
 $client_id_fromdb = $details['InvoiceClient_ID'];
+
+
+
+
 ?>
 
 <div class="row">
@@ -22,9 +26,12 @@ $client_id_fromdb = $details['InvoiceClient_ID'];
                     <input type="hidden" name="client_id" value="<?php echo $client_id_fromdb; ?>">
                         <div class="row">
                             <div class="col-md-3">
-                                <div class="mb-3">
-                                    <label for="performa-number" class="form-label">Perfoma Number</label>
+                                <div class="mb-3 d-none" >
                                     <input type="text" name="performa-number" id="performa-number" class="form-control form-field" readonly value="<?php echo $invoice->generate_Performa_number($client_id_fromdb);?>">
+                                </div>
+                                <div class="mb-3" >
+                                    <label for="performa-new" class="form-label">Perfoma Number</label>
+                                    <input type="text" name="performa-new" id="performa-new" class="form-control form-field"  readonly value="<?php echo $invoice->newPerfoma();?>">
                                 </div>
                             </div>
                             <div class="col-md-3">
