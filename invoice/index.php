@@ -31,7 +31,7 @@ $all_dir = scandir(ROOT_PATH . 'invoice/');
             <div class="row">
                 <div class="col-md-12">
                     <div>
-                        <button class="btn"></button>
+                        
                     </div>
                 </div>
             </div>
