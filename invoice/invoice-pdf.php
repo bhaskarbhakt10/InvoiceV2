@@ -217,7 +217,7 @@ if (@file_exists(dirname(__FILE__) . '/lang/eng.php')) {
 // ---------------------------------------------------------
 
 // set font
-$pdf->SetFont('times', '', 12);
+$pdf->SetFont('times', '', 11);
 
 // add a page
 $pdf->watermark__($is_paid);
