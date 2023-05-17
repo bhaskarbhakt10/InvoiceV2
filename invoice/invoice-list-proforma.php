@@ -11,7 +11,7 @@ $result = $invoice->get_all_Details_ByID($client_id);
             </div>
             <div class="col-md-10 py-5">
                 <div class="pg-title">
-                    <h2 class="">List Performa</h2>
+                    <h2 class="">List proforma</h2>
                 </div>
                 <table class="table table-striped table-hover client-list-table">
                     <thead>

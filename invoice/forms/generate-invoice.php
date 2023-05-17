@@ -19,7 +19,7 @@ $client_id_fromdb = $details['InvoiceClient_ID'];
             </div>
             <div class="col-md-10 py-5">
                 <div class="pg-title">
-                    <h2 class="">Generate Performa</h2>
+                    <h2 class="">Generate proforma</h2>
                 </div>
                 <div class="form-wrapper generate-invoice">
                     <form action="<?php echo ROOT_URL_ACTION . 'add-invoice.php'; ?>" method="POST" id="gen-invoice-form">
