@@ -56,6 +56,7 @@ $client_id_fromdb = $details['InvoiceClient_ID'];
                                     </select>
                                 </div>
                             </div>
+                           
                         </div>
                         <div class="row">
                             <div class="col-md-12">
@@ -157,6 +158,12 @@ $client_id_fromdb = $details['InvoiceClient_ID'];
                                             </tr>
                                         </tbody>
                                     </table>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <input type="checkbox" name="" id="use-comma" value="" class="form-check-input">
+                                    <label for="use-comma" class="form-label">Yes. I want to use comma to seprate values</label>
                                 </div>
                             </div>
                             <div class="col-md-12">

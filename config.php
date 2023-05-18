@@ -22,6 +22,12 @@ if (!defined("ROOT_URL")) {
     $root_url = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/invoiceV2/';
     define("ROOT_URL", $root_url);
 }
+if (!defined("NAVIGATION_URL")) {
+    $root_url = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/invoiceV2/invoice/index.php?page=';
+    define("NAVIGATION_URL", $root_url);
+}
+
+
 
 //timezone
 if(!defined('TIMEZONE_IN')){

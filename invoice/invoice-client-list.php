@@ -66,6 +66,14 @@
                             }
                         }
                     }
+                    else{
+                        ?>
+                        <tr>
+                            <td colspan="5">No clients Found. Start  <a href="<?php echo NAVIGATION_URL .'invoice-clients' ?>">adding clients</a></td>
+                        </tr>
+                        <?php
+
+                    }
                         ?>
                     </tbody>
                     <tfoot>

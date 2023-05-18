@@ -52,8 +52,8 @@
         let this_value = $(this).val();
         gstin__check(this_value);
     });
-    
-    function gstin__check(this_value){
+
+    function gstin__check(this_value) {
         let cmp_country = "India";
         if (this_value.toLowerCase() === cmp_country.toLowerCase() || this_value.includes(cmp_country.toLowerCase())) {
             $('#gstin').append(gstin);
@@ -83,7 +83,7 @@
             cgst__.val('N/A');
             sgst__.val('N/A');
             gstin__check(this_input);
-           
+
         }
         else if (this_input.includes(state_l) === true && this_input.includes(country_l) === true) {
             igst__.val("N/A");
@@ -142,40 +142,46 @@
     $(document.body).on('blur', '[name="price"]', function (e) {
         e.preventDefault();
         let this_value = $(this).val();
-        const sum_price = sub_total();
+        const sum_price = parseFloat(sub_total());
+
         $('#subtotal').val(sum_price);
+
         $('[name="subtotal"]').trigger('change');
         $('[name="discount"]').trigger('blur');
     });
-    
+
     $(document.body).on('change', '[name="subtotal"]', function (e) {
         let sum_price = $('#subtotal').val();
-        let igst ;
+        let igst;
         let total;
-        if($('#IGST').length !== 0){
+        if ($('#IGST').length !== 0) {
             igst = $('#IGST').val();
             calcIGST(igst, sum_price);
-            total = calcGst(igst,sum_price);
+            total = calcGst(igst, sum_price);
         }
-        else if($('#SGST').length !==0 && $('#CGST').length !== 0 ){
-            igst =  parseInt($('#SGST').val()) + parseInt($('#CGST').val());
-            total = calcGst(igst,sum_price);
-            let sgst = parseInt($('#SGST').val()) ;
-            calcCGST(sgst , sum_price)
-            let cgst = parseInt($('#CGST').val());
-            calcSGST(cgst , sum_price);
+        else if ($('#SGST').length !== 0 && $('#CGST').length !== 0) {
+            igst = parseFloat($('#SGST').val()) + parseFloat($('#CGST').val());
+            total = calcGst(igst, sum_price);
+            let sgst = parseFloat($('#SGST').val());
+            calcCGST(sgst, sum_price)
+            let cgst = parseFloat($('#CGST').val());
+            calcSGST(cgst, sum_price);
         }
-        else{
-            total = sum_price;
+        else {
+            total = parseFloat(sum_price);
         }
+
         $('#total').val(total);
+
+
     });
 
     $(document.body).on('blur', '[name="discount"]', function (e) {
-        let discount_price =  parseFloat($(this).val());
-        const discounted_price = discount(discount_price);
+        let discount_price = parseFloat($(this).val());
+        const discounted_price = parseFloat(discount(discount_price));
         $('#subtotal').val(discounted_price);
-        if($('#IGST').length === 0 && $('#SGST').length ===0 && $('#CGST').length === 0 ){
+        $('[name="subtotal"]').trigger('change');
+        if ($('#IGST').length === 0 && $('#SGST').length === 0 && $('#CGST').length === 0) {
             $('#total').val(discounted_price);
         }
     });
@@ -194,32 +200,108 @@
             price_array.push(parseFloat(value));
         }
         let sum_price = price_array.reduce((a, b) => a + b, 0);
-        return sum_price;
+        console.log(parseFloat(sum_price));
+        return parseFloat(sum_price);
     }
 
-    function calcGst(igst, sum_price){
-        let this_igst = (parseFloat(sum_price)*(parseInt(igst)) / 100);
+    function calcGst(igst, sum_price) {
+        let this_igst = (parseFloat(sum_price) * (parseFloat(igst)) / 100);
         return parseFloat(sum_price) + this_igst;
     }
-    function calcCGST(igst, sum_price){
-        let this_cgst = (parseFloat(sum_price)*(parseInt(igst)) / 100);
+    function calcCGST(igst, sum_price) {
+        let this_cgst = (parseFloat(sum_price) * (parseFloat(igst)) / 100);
         $('#CGST-value').val(this_cgst);
     }
-    function calcSGST(igst, sum_price){
-        let this_sgst = (parseFloat(sum_price)*(parseInt(igst)) / 100);
+    function calcSGST(igst, sum_price) {
+        let this_sgst = (parseFloat(sum_price) * (parseFloat(igst)) / 100);
         $('#SGST-value').val(this_sgst);
     }
-    function calcIGST(igst, sum_price){
-        let this_igst = (parseFloat(sum_price)*(parseInt(igst)) / 100);
+    function calcIGST(igst, sum_price) {
+        let this_igst = (parseFloat(sum_price) * (parseFloat(igst)) / 100);
         $('#IGST-value').val(this_igst);
     }
 
-    function discount(discount_price){
+    function discount(discount_price) {
         let subtotal = parseFloat($('#subtotal').val());
         return (subtotal - discount_price);
 
     }
 
+    function use_comma() {
+        if ($('#use-comma').is(':checked')) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    $(document.body).on('change', '#use-comma', (e) => {
+        if (use_comma() === true) {
+            let sub_total_value = parseFloat($('#subtotal').val());
+            let total_value = parseFloat($('#total').val());
+            let discount = parseFloat($('#discount').val());
+            if ($('#CGST-value').length !== 0) {
+                let cgst_value = parseFloat($('#CGST-value').val());
+                $('#CGST-value').val(cgst_value.toLocaleString('en-US'))
+            }
+            if ($('#SGST-value').length !== 0) {
+                let sgst_value = parseFloat($('#SGST-value').val());
+                $('#SGST-value').val(sgst_value.toLocaleString('en-US'))
+
+            }
+            if ($('#IGST-value').length !== 0) {
+                let igst_value = parseFloat($('#IGST-value').val());
+                $('#IGST-value').val(igst_value.toLocaleString('en-US'))
+
+            }
+            let all_price = $('[name="price"]');
+            for (let index = 0; index < all_price.length; index++) {
+                let current_val = parseFloat($(all_price[index]).val());
+                $(all_price[index]).val(current_val.toLocaleString('en-US'));
+
+            }
+            $('#total').val(total_value.toLocaleString('en-US'))
+            $('#subtotal').val(sub_total_value.toLocaleString('en-US'));
+            $('#discount').val(discount.toLocaleString('en-US'));
+        }
+        else {
+            let sub_total_value = parseFloat($('#subtotal').val().replaceAll(',',''));
+            let total_value = parseFloat($('#total').val().replaceAll(',',''));
+            let discount = parseFloat($('#discount').val().replaceAll(',',''));
+            if ($('#CGST-value').length !== 0) {
+                let cgst_value = parseFloat($('#CGST-value').val().replaceAll(',',''));
+                $('#CGST-value').val(cgst_value);
+            }
+            if ($('#SGST-value').length !== 0) {
+                let sgst_value = parseFloat($('#SGST-value').val().replaceAll(',',''));
+                $('#SGST-value').val(sgst_value);
+
+            }
+            if ($('#IGST-value').length !== 0) {
+                let igst_value = parseFloat($('#IGST-value').val().replaceAll(',',''));
+                $('#IGST-value').val(igst_value);
+
+            }
+            let all_price = $('[name="price"]');
+            for (let index = 0; index < all_price.length; index++) {
+                let current_val = parseFloat($(all_price[index]).val().replaceAll(',',''));
+                $(all_price[index]).val(current_val);
+
+            }
+            $('#total').val(total_value);
+            $('#subtotal').val(sub_total_value);
+            $('#discount').val(discount);
+        }
+    })
+
+
+    $(document.body).on('focus','#details input', (e)=>{
+        if(use_comma()=== true){
+            $('#use-comma').prop('checked', false);
+            $('#use-comma').trigger('change');
+        }
+    });
 
 
 

@@ -92,7 +92,7 @@ class Invoice
         if($res->num_rows > 0 ){
             while($row = $res->fetch_assoc()){
                 $all_array = json_decode($row['invoiceInvoices_Info'], true);
-                print_r($all_array);
+                // print_r($all_array);
                 if(is_countable($all_array)){
                     array_push($empty_array, count($all_array));
                 }
@@ -103,10 +103,10 @@ class Invoice
             $new_perfoma = 1;
         }
         else{
-            $new_perfoma = array_sum($empty_array);
+            $new_perfoma = array_sum($empty_array) +1;
             
         }
-        $perfoma_string .= sprintf('%03d', $new_perfoma );
+        $perfoma_string .= sprintf('%03d', $new_perfoma);
         $perfoma_string .= '/' . $financial_year;
     
         return $perfoma_string;
