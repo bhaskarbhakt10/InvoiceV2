@@ -163,7 +163,7 @@ if (document.querySelector('#address-country') !== null) {
             igst__.value = "N/A";
         }
         else{
-            igst__.value = "N/A";
+            igst__.value = "18%";
             sgst__.value = "N/A";
             cgst__.value = "N/A";
 

@@ -33,7 +33,8 @@ if (!empty($invoice_info_json)) {
     foreach ($invoice_info_arr as $info_arrkey => $info_arrvalue) {
         if ($info_arrvalue['uniqueID'] === $perfoma_id) {
             // print_r($info_arrvalue);
-            $perfoma_number = $info_arrvalue['performa-number'];
+            // $perfoma_number = $info_arrvalue['performa-number'];
+            $perfoma_number = $info_arrvalue['performa-new'];
             $dated_invoice = $info_arrvalue['performa-date'];
             $service = $info_arrvalue['performa-service'];
             $description = $info_arrvalue['description'];
