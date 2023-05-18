@@ -59,10 +59,10 @@
                 <a class="nav-link" href="<?php echo NAVIGATION_URL .'invoice-client-list' ?>">List Client</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="<?php echo NAVIGATION_URL .'invoice-list-proforma' ?>">List Proforma</a>
+                <a class="nav-link" href="#">List Proforma</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="<?php echo NAVIGATION_URL .'invoice-clients' ?>">List Invoices</a>
+                <a class="nav-link" href="#">List Invoices</a>
               </li>
             </ul>
           </div>
