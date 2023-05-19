@@ -36,7 +36,7 @@ if (!empty($invoice_info_json)) {
             // $perfoma_number = $info_arrvalue['performa-number'];
             $perfoma_number = $info_arrvalue['performa-new'];
             $dated_invoice = $info_arrvalue['performa-date'];
-            $service = $info_arrvalue['performa-service'];
+            $service = $info_arrvalue['performa-service'];    
             $description = $info_arrvalue['description'];
             $price = $info_arrvalue['price'];
             $discount = $info_arrvalue['discount'];
@@ -136,6 +136,166 @@ if(!empty($total)){
     $total_data .='<td class="text-center text-indent-left">'.$total.'</td>';
 }
 
+$tnc = '';
+ if(!empty($service)){
+    switch ($service) {
+        case 'SMO':
+            $tnc= '<tr>
+            <td class="font-10">
+                <b class="">Payment Terms:</b>
+                <ol class="">
+                    <li>50% amount to be paid in advance for SMO services.</li>
+                <li>Balance 50% to be paid at the end of the 2nd month of the 3 month package period.</li>
+                <li>Cheque payment via courier/Online transfer accepted.</li>
+            </ol>
+                <b>General Terms:</b>
+                <ol><li>Guarantee of security only if the administrative rights are held solely by NUIT Solutions.</li>
+                <li>No features will be added once the bill is finalised. Any additional feature will hold extra charge.</li>
+                <li>For designing specific posts, the minimum time to be given is 48 hrs. </li>
+                <li>NUIT Solutions is not responsible for copyright of content/images.</li>
+                <li>Response to customer queries on any social portals is to be handled by the client.</li>
+            </ol>
+            </td>
+            </tr>';
+            break;
+        case 'SEO':
+            $tnc='<tr>
+            <td class="font-10">
+                <b class="">Payment Terms:</b>
+                <ol class="">
+                    <li>100% upfront amount is payable monthly by the client for SEO services.</li>
+                    <li>Minimum period for SEO package is 6 months.</li>
+                    <li>Cheque payment /Online transfer/Cash payment accepted.</li>
+                </ol>
+                <b>General Terms:</b>
+                <ol><li>Guarantee of security only if the administrative rights are held solely by NUIT Solutions.
+                    </li>
+                    <li>No features will be added once the bill is finalised. Any additional feature will hold extra charge.</li>
+                    <li>For any updates to feature, the minimum time to be given is 24 hrs.</li>
+                    <li>NUIT Solutions is not responsible for copyright of content/images.</li>
+                </ol>
+            </td>
+            </tr>';
+            break;
+        case 'AMC':
+            $tnc='<tr>
+            <td class="font-10">
+                <b class="">Payment Terms:</b>
+                <ol class="">
+                    <li>100% amount to be paid in advance for website maintenance.</li>
+                <li>Cheque payment via courier/Online transfer accepted.</li>
+            </ol>
+                <b>General Terms:</b>
+                <ol><li>Guarantee of security only if the administrative rights are held solely by NUIT Solutions.
+            </li>
+                <li>No features will be added once the bill is finalised. Any additional feature will hold extra charge.</li>
+                <li>For any updates to feature, the minimum time to be given is 2 working days.</li>
+                <li>NUIT Solutions is not responsible for copyright of content/images.</li>
+            </ol>
+            </td>
+            </tr>';
+        break;
+        case 'WSD':
+            $tnc='<tr>
+            <td class="font-10">
+                <b class="">Payment Terms:</b>
+                <ol class="">
+                    <li>50% upfront amount needs to be paid by the client for website development and 100% upfront payment for domain/hosting purchase.</li>
+                <li>The client will be liable to pay the balance due, if a maximum timeline of 3 months is extended for website development from client end. Only post complete payment will the website be made live.</li>
+                <li>Cheque payment /Online transfer/Cash payment accepted.</li>
+            </ol>
+                <b>General Terms:</b>
+                <ol><li>Guarantee of security only if the administrative rights are held solely by NUIT Solutions.
+            </li>
+                <li>No features will be added once the bill is finalised. Any additional feature will hold extra charge.</li>
+                <li>Free Maintenance of the website will be provided (*only for projects that fall in this category) which includes only image and content updates. During this period the admin rights will not be shared by NUIT Solutions. The client may decide whether to avail of Free Maintenance or not.</li>
+                <li>For any updates to feature, the minimum time to be given is 24 hrs.</li>
+                <li>NUIT Solutions is not responsible for copyright of content/images.</li>
+            </ol>
+            </td>
+            </tr>';
+            break;
+        case 'MKT':
+            $tnc='<tr>
+            <td class="font-10">
+                <b class="">Payment Terms:</b>
+                <ol class="">
+                    <li>100% amount to be paid in advance for Paid Ads services.</li>
+                <li>Cheque payment /Online transfer/Cash payment accepted.</li>
+            </ol>
+                <b>General Terms:</b>
+                <ol><li>Guarantee of security only if the administrative rights are held solely by NUIT Solutions.
+            </li>
+                <li>All leads generated have to be handled by the client. Only lead information will be provided by NUIT Solutions.</li>
+                <li>For any updates to feature, the minimum time to be given is 24 hrs.</li>
+                <li>NUIT Solutions is not responsible for copyright of content/images.</li>
+            </ol>
+            </td>
+            </tr>';
+            break;
+        case 'DHS':
+            $tnc='<tr>
+            <td class="font-10">
+                <b class="">Payment Terms:</b>
+                <ol class="">
+                    <li>100% upfront amount is payable by the client for domain, hosting, email & SSL services.</li>
+                <li>Domain/Hosting/Email/SSL is renewed automatically once the payment is done.</li>
+                <li>Cheque payment via courier/Online transfer accepted.</li>
+            </ol>
+                <b>General Terms:</b>
+                <ol><li>Guarantee of security only if the administrative rights are held solely by NUIT Solutions.
+            </li>
+                <li>No features will be added once the bill is finalised. Any additional feature will hold extra charge.</li>
+                <li>For any updates to feature, the minimum time to be given is 24 hrs.</li>
+                <li>NUIT Solutions is not responsible for copyright of content/images.</li>
+            </ol>
+            </td>
+            </tr>';
+            break;
+        case 'DES':
+            $tnc='<tr>
+            <td class="font-10">
+                <b class="">Payment Terms:</b>
+                <ol class="">
+                    <li>100% upfront amount is payable for designing orders.</li>
+                <li>All payments to be done via Online transfer.</li>
+            </ol>
+                <b>General Terms:</b>
+                <ol><li>Guarantee of security only if the administrative rights are held solely by NUIT Solutions.
+            </li>
+                <li>No features will be added once the bill is finalised. Any additional feature will hold extra charge.</li>
+                <li>All designs (for pamphlets/brochure/packaging/business stationery) will be provided in .psd or .ai format for print.</li>
+                <li>For social media or festive designs no open file will be provided.</li>
+                <li>NUIT Solutions is not responsible for copyright of content/images.</li>
+            </ol>
+            </td>
+            </tr>';
+            break;
+        case 'ECOM':
+            $tnc='<tr>
+            <td class="font-10">
+                <b class="">Payment Terms:</b>
+                <ol class="">
+                    <li>50% upfront amount needs to be paid by the client if the order value is between Rs. 10,000 and Rs. 40,000.</li>
+                <li>30% upfront amount needs to be paid if the order value is above Rs. 40,000.</li>
+                <li>Cheque payment via courier/Online transfer accepted.</li>
+            </ol>
+                <b>General Terms:</b>
+                <ol><li>Guarantee of security only if the administrative rights are held solely by NUIT Solutions.
+            </li>
+                <li>No features will be added once the bill is finalised. Any additional feature will hold extra charge.</li>
+                <li>For any updates to feature, the minimum time to be given is 24 hrs.</li>
+                <li>NUIT Solutions is not responsible for copyright of content/images.</li>
+            </ol>
+            </td>
+            </tr>';
+            break;
+
+        default:
+            # code...
+            break;
+    }
+}
 
 class MYPDF extends TCPDF
 {
@@ -143,6 +303,9 @@ class MYPDF extends TCPDF
     protected $watermark;
     function invoiceORprofoma($proforma_footer){
         $this->invoice_or_profoma = $proforma_footer;
+    }
+    function tnc($tnc){
+        $this->tnc = $tnc;
     }
 
     function watermark__($watermark){
@@ -176,7 +339,7 @@ class MYPDF extends TCPDF
         $footer_image = PDF_IMAGES . 'footer.png';
         $html = '';
         $html .= '<style>.text-right{text-align:right;}ol{padding:0; line-height:0; list-style:}li{line-height:12px;}.blue{background-color:blue;}.red{background-color:red;}.w-10{width:10%;}.W-80{width:80%;}.font-10{font-size:10px;}.footer-image{width:980px; height:233px;}</style>';
-        $html .= '<table class=""><tr><td class="w-10"></td><td class="w-80"><table><tr><td><p class="text-right"><i>*This is an Electronic '.$this->invoice_or_profoma.' and hence needs no signature.</p></i><hr class="red"></td></tr><tr><td class="font-10"><b>NUIT Solutions proclaims 100% Non-Disclosure Agreement Guarantee to prevent unauthorized access of client-owned “Confidential Information”. We assert that it will never be used for any of our other clients</b></td></tr><tr><td class="font-10"><b class="">Payment Terms:</b><ol class=""><li>100% upfront amount is payable for domain and hosting services.</li><li>Renewal will be done only once payment received.</li><li>Domain, if not renewed in time may expire and be non-retrievable</li><li>Cheque payment /Online transfer/Cash payment accepted</li></ol><b>General Terms:</b><ol><li>Guarantee of security only if the administrative rights are held solely by NUIT Solutions.</li><li>No features will be added once the bill is finalised. Any additional feature will hold extra charge.</li><li>For any updates to feature, the minimum time to be given is 24 hrs.</li><li>NUIT Solutions is not responsible for copyright of content/images.</li></ol></td></tr></table></td><td class="w-10"></td></tr></table>';
+        $html .= '<table class=""><tr><td class="w-10"></td><td class="w-80"><table><tr><td><p class="text-right"><i>*This is an Electronic '.$this->invoice_or_profoma.' and hence needs no signature.</p></i><hr class="red"></td></tr><tr><td class="font-10"><b>NUIT Solutions proclaims 100% Non-Disclosure Agreement Guarantee to prevent unauthorized access of client-owned “Confidential Information”. We assert that it will never be used for any of our other clients</b></td></tr>'. $this->tnc .'</table></td><td class="w-10"></td></tr></table>';
         $html .= '<table class=""><tr><td><img src="' . $footer_image . '" class="footer-image"></td></tr></table>';
         $this->writeHTML($html, false, false, false, false, 'L');
     }
@@ -258,6 +421,7 @@ $main_body .= '</tbody>';
 $main_body .= '</table>';
 
 $pdf->invoiceORprofoma($proforma_footer);
+$pdf->tnc($tnc);
 
 // print a block of text using Write()
 // $pdf->Write(0, $main_body, '', 0, 'C', true, 0, false, false, 0);
