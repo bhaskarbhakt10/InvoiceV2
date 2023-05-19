@@ -5,6 +5,7 @@
             <div class="pg-title">
                     <h2 class="">Client Detail List</h2>
                 </div>
+                <div class="table-responsive">
                 <table class="table table-striped table-hover client-list-table">
                     <thead class="thead-dark">
                         <tr>
@@ -80,6 +81,7 @@
                         <input type="hidden" id="ajax_url" value="<?php echo ROOT_URL_ACTION . 'softdel.php' ?>">
                     </tfoot>
                 </table>
+                </div>
             </div>
         </div>
     </div>

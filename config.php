@@ -26,6 +26,18 @@ if (!defined("NAVIGATION_URL")) {
     $root_url = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/invoiceV2/invoice/index.php?page=';
     define("NAVIGATION_URL", $root_url);
 }
+if (!defined("ASSETS_URL")) {
+    $root_url = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/invoiceV2/assets/';
+    define("ASSETS_URL", $root_url);
+}
+if (!defined("ASSETS_HEADER_FOOTER")) {
+    $root_url = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/invoiceV2/assets/images/header-footer';
+    define("ASSETS_HEADER_FOOTER", $root_url);
+}
+if (!defined("LOGO")) {
+    $root_url = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/invoiceV2/assets/images/header-footer/NUIT.svg';
+    define("LOGO", $root_url);
+}
 
 
 

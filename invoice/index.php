@@ -1,6 +1,7 @@
 <?php
 require_once '../config.php';
 require_once 'parts/header.php';
+require_once 'parts/invoice-header.php';
 
 $all_dir = scandir(ROOT_PATH . 'invoice/');
 ?>
