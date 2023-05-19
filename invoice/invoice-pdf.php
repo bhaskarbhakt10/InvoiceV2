@@ -301,6 +301,7 @@ class MYPDF extends TCPDF
 {
     protected $invoice_or_profoma ;
     protected $watermark;
+    protected $tnc;
     function invoiceORprofoma($proforma_footer){
         $this->invoice_or_profoma = $proforma_footer;
     }
