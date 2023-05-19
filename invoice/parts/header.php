@@ -48,7 +48,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-dark">
         <div class="container">
-              <a class="navbar-brand" href="/"><img src="https://www.nuitsolutions.com/wp-content/uploads/2022/03/NUIT-Logo-2.svg" alt="logo" width="200"></a>
+              <a class="navbar-brand" href="#"><img src="https://www.nuitsolutions.com/wp-content/uploads/2022/03/NUIT-Logo-2.svg" alt="logo" width="200"></a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
