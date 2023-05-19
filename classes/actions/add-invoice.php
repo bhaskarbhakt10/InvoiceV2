@@ -26,7 +26,8 @@ if(isset($_POST)){
     $data_arr['is_active'] = 1;
     $data_arr['is_perfoma'] = 1;
     $data_arr['is_invoice'] = 0;
-    $data_arr['invoice_number'] = " ";
+    $data_arr['invoice_number'] = "";
+    $data_arr['invoice_universal_number'] = "";
     $data_arr['is_paid'] = 0;
     $data_arr['genrated_at_time'] = $time_now;
     $data_arr['genrated_at_date'] = $date_today;

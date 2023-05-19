@@ -180,7 +180,67 @@ class Invoice
         return $Invoice_string . '/' . $financial_year;
     }
 
+    function getInvoiceUniversalNumber()
+    {
+        $Invoice_string = "#";
+        date_default_timezone_set(TIMEZONE_IN);
+        $date = new DateTime();
+        if ($date->format('m') <= 6) {
+            $financial_year = ($date->format('Y') - 1) . '-' . $date->format('y');
+        } else {
+            $financial_year = $date->format('Y') . '-' . ($date->format('y') + 1);
+        }
+        $results_json = $this->get_all_Details();
+        $info_arr = array();
+        $InvoiceNumberArray = array();
+        if ($results_json->num_rows > 0) {
+            while($row = $results_json->fetch_assoc()){
+                $info_json  = $row['invoiceInvoices_Info'];
+                if(!empty($info_json)){
+                    $infoArray = json_decode($info_json, true);
+                    array_push($info_arr,$infoArray);
+                }
+            }
+        }
+        echo "<pre>";
+        // print_r($info_arr);
+        echo "</pre>";
+        foreach($info_arr as $key=>$info){
+            // echo gettype($info['invoice_number']);
+            foreach($info as $i){
+                if(!empty($i['invoice_universal_number']) ){
+                    array_push($InvoiceNumberArray,$i['invoice_universal_number']);
+                }
+            }
+        }
 
+        // print_r($InvoiceNumberArray);
+            if(empty($InvoiceNumberArray)){
+                $invoice_number = 1;
+            }
+            else{
+                // echo count($InvoiceNumberArray);
+                if(count($InvoiceNumberArray) ===1 ){
+                    $last_invoice_number = end($InvoiceNumberArray);
+                }
+                else{
+                    sort($InvoiceNumberArray);
+                    $cmp_array = array();
+                    foreach ($InvoiceNumberArray as $key => $value) {
+                        array_push($cmp_array, $value);
+                    }
+                    // print_r($cmp_array);
+                }
+                $last_invoice_number = end($cmp_array);
+                $exploded_last_number = explode('/', $last_invoice_number);
+                $invoice_prev_number = ltrim($exploded_last_number[0], '#');
+                $invoice_number = (int)$invoice_prev_number + 1;
+                
+            }
+            $Invoice_string .= sprintf('%03d', $invoice_number);
+            return $Invoice_string . '/' . $financial_year;
+      
+    }
 
 
     function makeitInvoice($client_id, $unique_id)
@@ -206,10 +266,12 @@ class Invoice
             // print_r($info_arr[$key]['is_perfoma']);
             if ($info_arr[$key]['is_perfoma'] === 1 && $info_arr[$key]['is_invoice'] === 0 && $info_arr[$key]['is_paid'] === 0) {
                 $invoice_number__ = $this->getInvoiceId($client_id);
+                $invoice_universal_number__ = $this->getInvoiceUniversalNumber();
                 // print_r(gettype($invoice_number__));
                 $info_arr[$key]['is_perfoma'] = 0;
                 $info_arr[$key]['is_invoice'] = 1;
                 $info_arr[$key]['invoice_number'] = $invoice_number__;
+                $info_arr[$key]['invoice_universal_number'] = $invoice_universal_number__;
                 // print_r($this->getInvoiceId($client_id, $unique_id));
                 $info_arr[$key]['is_paid'] = 1;
             }

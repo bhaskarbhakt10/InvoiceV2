@@ -4,6 +4,8 @@ if (array_key_exists('client-id', $_GET)) {
 } else {
     exit();
 }
+// $test = $invoice->getInvoiceUniversalNumber();
+// print_r($test);
 $result = $invoice->get_all_Details_ByID($client_id);
 ?>
 <div class="row">
@@ -18,7 +20,9 @@ $result = $invoice->get_all_Details_ByID($client_id);
                         <tr>
                             <th>Sr no </th>
                             <th>Genrated On</th>
-                            <th>Perfoma Number</th>
+                            <!-- <th>Perfoma Number</th> -->
+                            <th>Perfoma Universal  Number</th>
+                            <th>Invoice Universal  Number</th>
                             <th>Service</th>
                             <th>Is Invoice ?</th>
                             <th>Actions</th>
@@ -38,7 +42,9 @@ $result = $invoice->get_all_Details_ByID($client_id);
                                 <tr>
                                     <td><?php echo $sr_no = $sr_no + 1; ?></td>
                                     <td><?php echo $detail['genrated_at_date'] ?></td>
-                                    <td><?php echo $detail['performa-number'] ?></td>
+                                    <!-- <td><?php // echo $detail['performa-number'] ?></td> -->
+                                    <td><?php echo $detail['performa-new'] ?></td>
+                                    <td><?php echo !empty($detail['invoice_universal_number']) ? $detail['invoice_universal_number'] : '-' ?></td>
                                     <td><?php echo $detail['performa-service'] ?></td>
                                     <td><?php echo $detail['is_invoice'] === 0 ? 'No' : 'Yes' ?></td>
                                     <td>
