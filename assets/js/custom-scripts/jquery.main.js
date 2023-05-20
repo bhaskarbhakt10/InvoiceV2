@@ -83,7 +83,8 @@
             }
         }
     }
-    else {
+    else{
+
         input_city.detach();
     }
 
@@ -390,7 +391,7 @@
             alert("GSTIN Number Cannot be less than 15. Current Length "+ $(this).val().length);
             $(this).closest('form').find('button').attr('disabled','disabled');
         }
-        else{
+    else{
             $(this).closest('form').find('button').removeAttr('disabled','disabled');
         }
     });

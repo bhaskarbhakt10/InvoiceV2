@@ -36,7 +36,8 @@ $result = $invoice->get_all_Details_ByID($client_id);
                                 $all_info = $row['invoiceInvoices_Info'];
                             }
                             $all_info_arr = json_decode($all_info, true);
-                            print_r($all_info_arr);
+                            // print_r($all_info_arr);
+                            if(!empty($all_info_arr)){
                             foreach ($all_info_arr as $detail) {
                         ?>
                                 <tr>
@@ -63,6 +64,14 @@ $result = $invoice->get_all_Details_ByID($client_id);
                                     </td>
                                 </tr>
                         <?php
+                                 }
+                            }
+                            else{
+                                ?>
+                                <tr>
+                                    <td colspan="7">No results Found</td>
+                                </tr>
+                                <?php
                             }
                         }
                         ?>

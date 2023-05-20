@@ -46,13 +46,21 @@ class Invoice
         if($res ->num_rows >0){
             while($row = $res->fetch_assoc()){
                 $row_arr = json_decode($row['invoiceInvoices_Info'], true);
-                foreach($row_arr as $arr){
+                if(!empty($row_arr)){
+                    foreach($row_arr as $arr){
                     if($arr['is_perfoma'] !== 1 && $arr['is_invoice'] === 1 && $arr['is_paid']=== 1 && !empty($arr['invoice_universal_number'])){
                        array_push($data, $arr);
                     }
                 }
+                }
             }
-            return $data;
+            if(!empty($data)){
+                return $data;
+
+            }
+            else{
+                return false;
+            }
         }
     }
 

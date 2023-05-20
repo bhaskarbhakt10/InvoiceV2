@@ -24,6 +24,7 @@
                             $invoices = $invoice->get_all_Invoices();
                             // print_r($invoices);
                             $sr_no = 0;
+                            if($invoices !== false){
                             foreach($invoices as $invoice)
                             {
                         ?>
@@ -46,7 +47,20 @@
                             <a href="<?php echo ROOT_URL .'invoice/invoice-pdf.php?id='.$invoice['uniqueID'].'&client-id='.$invoice['client_id']; ?>&trigger=download" class="btn btn-outline-success download" id="download"><i class="fa-duotone fa-download"></i></a>
                             </td>
                         </tr>
-                        <?php } ?>
+                        <?php }
+                            }
+                            /*
+                            else{
+                                ?>
+                                <tr>
+                                    <td colspan="6">
+                                        No results found
+                                    </td>
+                                </tr>
+                                <?php
+                            }
+                            */
+                        ?>
                     </tbody>
                 </table>
             </div>

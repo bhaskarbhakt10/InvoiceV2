@@ -4,7 +4,7 @@ if (array_key_exists('page', $_GET) && $_GET['page'] === 'invoice-edit-clients' 
     $client_id = $_GET['client-id'];
     $edit_client = $client->get_client_details_by_id($client_id);
     $editdetails = json_decode($edit_client['InvoiceClient_Info'], true);
-    print_r($editdetails);
+    // print_r($editdetails);
     $edit = true;
 } else if (array_key_exists('page', $_GET) && $_GET['page'] === 'invoice-clients') {
 } else {
@@ -26,10 +26,10 @@ if (array_key_exists('page', $_GET) && $_GET['page'] === 'invoice-edit-clients' 
         if ($edit === true) {
         ?>
             <span id="client-id" data-client-id="<?php echo $edit_client['InvoiceClient_ID'] ?>"></span>
+            <span id="edit-add-flag" data-edit-add-flag="<?php echo $edit===true? 'true' : 'false'; ?>"></span>
         <?php
         }
         ?>
-        <span id="edit-add-flag" data-edit-add-flag="<?php echo $edit===true? 'true' : 'false'; ?>"></span>
         <form action="<?php echo $edit === true ?  ROOT_URL_ACTION . 'edit-client.php' : ROOT_URL_ACTION . 'add-client.php'; ?>" method="POST" class="form" id="<?php echo $edit === true ? 'edit' : 'add' ?>-client-form">
             <fieldset class="invoice-clients">
                 <div class="form-wrapper">
