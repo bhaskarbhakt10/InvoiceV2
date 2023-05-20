@@ -13,9 +13,11 @@
                     <li class="nav-item">
                         <a class="nav-link text-white" href="<?php echo NAVIGATION_URL . 'invoice-client-list' ?>">List Client</a>
                     </li>
+                    <?php /*
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#">List Proforma</a>
                     </li>
+                    */ ?>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="<?php echo NAVIGATION_URL .'invoice-lists'?>">List Invoices</a>
                     </li>
