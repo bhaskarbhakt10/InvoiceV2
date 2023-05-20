@@ -384,5 +384,16 @@
     });
 
 
+    //gst validation
+    $(document.body).on('change','[name="client-gst"]', function(){
+        if($(this).val().length !== 15){
+            alert("GSTIN Number Cannot be less than 15. Current Length "+ $(this).val().length);
+            $(this).closest('form').find('button').attr('disabled','disabled');
+        }
+        else{
+            $(this).closest('form').find('button').removeAttr('disabled','disabled');
+        }
+    });
+
 
 })(jQuery);
