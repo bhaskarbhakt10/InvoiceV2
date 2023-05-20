@@ -31,19 +31,19 @@ $client_id_fromdb = $details['InvoiceClient_ID'];
                                 </div>
                                 <div class="mb-3" >
                                     <label for="performa-new" class="form-label">Perfoma Number</label>
-                                    <input type="text" name="performa-new" id="performa-new" class="form-control form-field"  readonly value="<?php echo $invoice->newPerfoma();?>">
+                                    <input type="text" name="performa-new" id="performa-new" class="form-control form-field"  required readonly value="<?php echo $invoice->newPerfoma();?>">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="mb-3">
                                     <label for="performa-number" class="form-label">Date</label>
-                                    <input type="text" name="performa-date" id="performa-date" class="form-control form-field datepicker" placeholder="DD/MM/YYYY">
+                                    <input type="text" name="performa-date" id="performa-date" class="form-control form-field datepicker" placeholder="DD/MM/YYYY" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="performa-service" class="form-label">Select a Service</label>
-                                    <select name="performa-service" id="performa-service" class="form-select form-field">
+                                    <select name="performa-service" id="performa-service" class="form-select form-field" required>
                                         <option value="">None</option>
                                         <option value="SMO">SMO</option>
                                         <option value="SEO">SEO</option>
@@ -74,10 +74,10 @@ $client_id_fromdb = $details['InvoiceClient_ID'];
                                                     <span class="sr-no">1</span>
                                                 </td>
                                                 <td>
-                                                    <textarea name="description" id="description" cols="30" rows="1" class="form-control form-field"></textarea>
+                                                    <textarea name="description" id="description" cols="30" rows="1" class="form-control form-field" required></textarea>
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control form-field" name="price" id="price" value="0">
+                                                    <input type="text" class="form-control form-field" name="price" id="price" value="0" required>
                                                 </td>
                                                 <td>
                                                     <button class="btn btn-outline-success add-row"><i class="fa-duotone fa-plus"></i></button>

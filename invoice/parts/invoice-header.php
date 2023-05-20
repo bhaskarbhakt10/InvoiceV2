@@ -8,7 +8,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="<?php echo NAVIGATION_URL . 'invoice-edit-clients' ?>">Add Client</a>
+                        <a class="nav-link text-white" href="<?php echo NAVIGATION_URL . 'invoice-clients' ?>">Add Client</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="<?php echo NAVIGATION_URL . 'invoice-client-list' ?>">List Client</a>

@@ -4,8 +4,37 @@
     //address
     let address_text_no = $('[data-ref=use-text-box-no]');
     let address_text_yes = $('[data-ref=use-text-box-yes]');
-    address_text_yes.addClass('d-none');
-    address_text_yes.detach();
+
+    //edit page 
+    let edit_select__ = '';
+    if($('#edit_select').length !== 0 ){
+         edit_select__ = $('#edit_select >* ');
+    }
+    let edit_check__ = '';
+    let edit_city_input ='';
+    if($('#edit_check').length !== 0 ){
+         edit_check__ = $('#edit_check');
+         edit_city_input = $('#edit_check #input-city');
+    }
+
+    if ($('#edit-add-flag').length !== 0) {
+        let edit_flag = $('#edit-add-flag').attr('data-edit-add-flag');
+        if (edit_flag === 'true') {
+            let textuseage = $('[name="textbox-usage"]');
+            for (let index = 0; index < textuseage.length; index++) {
+                if ($(textuseage[index]).prop('checked') === false) {
+                    let detach_this = $(textuseage[index]).attr('id');
+                    $('[data-ref="' + detach_this + '"]').detach();
+                }
+
+            }
+        }
+    }
+    else {
+        address_text_yes.addClass('d-none');
+        address_text_yes.detach();
+    }
+
     $(document).on('change', '[name=textbox-usage]', function () {
         $('[name=textbox-usage]').prop('checked', false);
         $(this).prop('checked', true);
@@ -19,8 +48,12 @@
 
             }
             else {
+                // alert("here");
                 $('#address-box').prepend(address_text_no);
                 address_text_yes.detach();
+                if($('#edit-add-flag').length !== 0 && $(edit_city_input).val() === '' ){
+                    $(edit_city_input).detach();
+                }
 
             }
         }
@@ -30,24 +63,71 @@
     let input_city = $('#input-city');
     let address_country_city = $('#address-country-city');
     // input_city.addClass('d-none');
+    // if($(input_city).val() === ''){
+    // }
+    // else{
+    // $('#input-city-check').prop('checked', true);
+    // $('#edit_select__').detach();
+    // }
 
-    input_city.detach();
-    $('#input-city-check').on('change', function (e) {
+    
+    if ($('#edit-add-flag').length !== 0) {
+        let edit_flag = $('#edit-add-flag').attr('data-edit-add-flag');
+        if (edit_flag === 'true') {
+            
+            if($('#input-city-check').prop('checked') === true){
+                $(edit_select__).detach();
+            }
+            else{
+                $(input_city).detach();
+            }
+        }
+    }
+    else {
+        input_city.detach();
+    }
 
-        if ($(this).is(':checked')) {
-            $(this).parent().append(input_city);
-            address_country_city.detach();
-            $(this).parent().find('d-none').removeClass('d-none');
+    $(document.body).on('change', '#input-city-check', function (e) {
+    
+        
+        if ($('#edit-add-flag').length !== 0) {
+            let edit_flag = $('#edit-add-flag').attr('data-edit-add-flag');
+            if (edit_flag === 'true'){
+                console.log(edit_select__);
+                if($('#input-city-check').is(':checked')) {
+                   $(edit_select__).detach();
+                //    $(edit_city_input).insertAfter($(this).parent());
+                   $(edit_check__).append(edit_city_input);
+                }
+                else{
+                    $('#edit_select').append(edit_select__)
+                    
+                    $(edit_city_input).detach();
+                }
+            }
         }
-        else {
-            $(this).parent().parent().prepend(address_country_city);
-            input_city.detach();
+        else{
+
+
+            if ($(this).is(':checked')) {
+                $(this).parent().append(input_city);
+                address_country_city.detach();
+                $(this).parent().find('d-none').removeClass('d-none');
+            }
+            else {
+                $(this).parent().parent().prepend(address_country_city);
+                input_city.detach();
+            }
+
         }
+        
     });
 
     //detach gstin
     let gstin = $('#gstin>*');
-    gstin.detach();
+    if ($('#gstin #client-gst').val() === '') {
+        gstin.detach();
+    }
     $('body').on('change', '#address-country', function (e) {
         let this_value = $(this).val();
         gstin__check(this_value);
@@ -266,26 +346,26 @@
             $('#discount').val(discount.toLocaleString('en-US'));
         }
         else {
-            let sub_total_value = parseFloat($('#subtotal').val().replaceAll(',',''));
-            let total_value = parseFloat($('#total').val().replaceAll(',',''));
-            let discount = parseFloat($('#discount').val().replaceAll(',',''));
+            let sub_total_value = parseFloat($('#subtotal').val().replaceAll(',', ''));
+            let total_value = parseFloat($('#total').val().replaceAll(',', ''));
+            let discount = parseFloat($('#discount').val().replaceAll(',', ''));
             if ($('#CGST-value').length !== 0) {
-                let cgst_value = parseFloat($('#CGST-value').val().replaceAll(',',''));
+                let cgst_value = parseFloat($('#CGST-value').val().replaceAll(',', ''));
                 $('#CGST-value').val(cgst_value);
             }
             if ($('#SGST-value').length !== 0) {
-                let sgst_value = parseFloat($('#SGST-value').val().replaceAll(',',''));
+                let sgst_value = parseFloat($('#SGST-value').val().replaceAll(',', ''));
                 $('#SGST-value').val(sgst_value);
 
             }
             if ($('#IGST-value').length !== 0) {
-                let igst_value = parseFloat($('#IGST-value').val().replaceAll(',',''));
+                let igst_value = parseFloat($('#IGST-value').val().replaceAll(',', ''));
                 $('#IGST-value').val(igst_value);
 
             }
             let all_price = $('[name="price"]');
             for (let index = 0; index < all_price.length; index++) {
-                let current_val = parseFloat($(all_price[index]).val().replaceAll(',',''));
+                let current_val = parseFloat($(all_price[index]).val().replaceAll(',', ''));
                 $(all_price[index]).val(current_val);
 
             }
@@ -296,8 +376,8 @@
     })
 
 
-    $(document.body).on('focus','#details input', (e)=>{
-        if(use_comma()=== true){
+    $(document.body).on('focus', '#details input', (e) => {
+        if (use_comma() === true) {
             $('#use-comma').prop('checked', false);
             $('#use-comma').trigger('change');
         }

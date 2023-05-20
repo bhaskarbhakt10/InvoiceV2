@@ -112,4 +112,15 @@ class Client
             }
         }
     }
+
+    function update_client_details($set_data , $update_id){
+        $sql = "UPDATE ". INVOICE_CLIENT ." set InvoiceClient_Info ='".$set_data."' WHERE InvoiceClient_ID='".$update_id."'" ;
+        $res = $this->db->connect()->query($sql);
+        if($res){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
