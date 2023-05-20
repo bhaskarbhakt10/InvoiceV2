@@ -95,4 +95,21 @@ class Client
             return false;
         }
     }
+
+    function get_client_name_by_id($client_id){
+        $sql = "SELECT InvoiceClient_Info FROM ". INVOICE_CLIENT. " WHERE InvoiceClient_ID='$client_id'";
+        // echo $sql ;
+        $res = $this->db->connect()->query($sql);
+        if($res->num_rows > 0){
+            while($row = $res->fetch_all()){
+                
+                foreach( $row as $Row ){
+                    foreach($Row as $R);{
+                        $this_row = json_decode($R, true);
+                        return ($this_row['client-name']);
+                    }
+                }
+            }
+        }
+    }
 }

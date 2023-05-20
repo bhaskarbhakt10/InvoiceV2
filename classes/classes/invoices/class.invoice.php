@@ -36,6 +36,25 @@ class Invoice
         }
     }
 
+ 
+
+
+    function get_all_Invoices(){
+        $sql = "SELECT invoiceInvoices_Info FROM " .INVOICE_INVOICES;
+        $res = $this->db->connect()->query($sql);
+        $data = array();
+        if($res ->num_rows >0){
+            while($row = $res->fetch_assoc()){
+                $row_arr = json_decode($row['invoiceInvoices_Info'], true);
+                foreach($row_arr as $arr){
+                    if($arr['is_perfoma'] !== 1 && $arr['is_invoice'] === 1 && $arr['is_paid']=== 1 && !empty($arr['invoice_universal_number'])){
+                       array_push($data, $arr);
+                    }
+                }
+            }
+            return $data;
+        }
+    }
 
 
     private function get_invoiceInvoices_Info_byID($id)

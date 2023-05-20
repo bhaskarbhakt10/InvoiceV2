@@ -258,7 +258,7 @@ ul {
 }
 
 .form-control.form-field,
-.form-select.form-field {
+.form-select.form-field,.dataTables_wrapper .dataTables_filter input,.dataTables_wrapper .dataTables_length select {
   border-width: 2px;
   border-style: solid;
   border-color: #cccccc;
@@ -698,4 +698,19 @@ ul {
 .generate-invoice .btn{
   margin-bottom: 5px;
   border-radius: 30px;
+}
+#invoices-tables_length, #invoices-tables_filter, #invoices-tables_filter label{
+  display: block;
+  float: unset;
+}
+.dataTables_wrapper .dataTables_filter{
+  float: unset;
+  text-align: left;
+}
+.dataTables_wrapper .dataTables_filter input{
+  width: 100%;
+    margin: auto
+}
+.dataTables_filter,.dataTables_length{
+  margin-bottom: 1em;
 }
