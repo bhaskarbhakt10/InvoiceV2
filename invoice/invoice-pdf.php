@@ -385,8 +385,8 @@ if (@file_exists(dirname(__FILE__) . '/lang/eng.php')) {
 $calibri_reg = TCPDF_FONTS::addTTFfont($_SERVER['DOCUMENT_ROOT'] . "InvoiceV2/assets/fonts/Calibri/calibri-regular.ttf", 'TrueTypeUnicode', '', 96);
 $calibri_bold = TCPDF_FONTS::addTTFfont($_SERVER['DOCUMENT_ROOT'] . "InvoiceV2/assets/fonts/Calibri/calibri-bold.ttf", 'TrueTypeUnicode', '', 96);
 // set font
-$pdf->SetFont('calibri', '', 11);
-$pdf->SetFont('times', '', 11);
+$pdf->SetFont('calibri', '', 9);
+$pdf->SetFont('times', '', 9);
 // $pdf->SetFont($calibri_reg, '', 11, '', false);
 
 
