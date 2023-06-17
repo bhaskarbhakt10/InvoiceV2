@@ -66,7 +66,7 @@ if (!empty($invoice_info_json)) {
                 $perfoma_number = $invoice_number;
                 $proforma_text = "Tax Invoice";
                 $proforma_heading = "INVOICE";
-                $proforma_footer = "invoice";
+                $proforma_footer = "Invoice";
             }
 
             $total = $info_arrvalue['total'];
