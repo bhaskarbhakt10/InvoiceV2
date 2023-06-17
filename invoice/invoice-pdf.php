@@ -385,8 +385,10 @@ if (@file_exists(dirname(__FILE__) . '/lang/eng.php')) {
 $calibri_reg = TCPDF_FONTS::addTTFfont($_SERVER['DOCUMENT_ROOT'] . "InvoiceV2/assets/fonts/Calibri/calibri-regular.ttf", 'TrueTypeUnicode', '', 96);
 $calibri_bold = TCPDF_FONTS::addTTFfont($_SERVER['DOCUMENT_ROOT'] . "InvoiceV2/assets/fonts/Calibri/calibri-bold.ttf", 'TrueTypeUnicode', '', 96);
 // set font
+$pdf->SetFont('calibri', '', 11);
 $pdf->SetFont('times', '', 11);
-$pdf->SetFont($calibri_reg, '', 11, '', false);
+// $pdf->SetFont($calibri_reg, '', 11, '', false);
+
 
 // add a page
 $pdf->watermark__($is_paid);
@@ -394,7 +396,7 @@ $pdf->AddPage();
 
 // set some text to print
 $main_body = '';
-$main_body .= '<style>.red{background-color:red;}.blue{background-color:blue;}.line-height{line-height:18px;}.border-1px{border:1px solid #333;}.font-14{font-size:14px;}.text-indent-left{ text-indent: 5px;}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.w-10{width:10%;}.w-20{width:20%;}.w-30{width:30%;}.w-40{width:40%;}.w-42{width:42%;}.w-50{width:50%;}.w-60{width:60%;}.w-70{width:70%;}.w-80{width:80%;}.w-100{width:100%;}.font-calibri{font-family:'.$calibri_reg.';font-weight:400;}</style>';
+$main_body .= '<style>.red{background-color:red;}.blue{background-color:blue;}.line-height{line-height:18px;}.border-1px{border:1px solid #333;}.font-14{font-size:14px;}.text-indent-left{ text-indent: 5px;}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.w-10{width:10%;}.w-20{width:20%;}.w-30{width:30%;}.w-40{width:40%;}.w-42{width:42%;}.w-50{width:50%;}.w-60{width:60%;}.w-70{width:70%;}.w-80{width:80%;}.w-100{width:100%;}.font-calibri{font-family:calibri;font-weight:400;}</style>';
 $main_body .= '<table class="body-table">';
 $main_body .= '<tbody>';
 $main_body .= '<tr>';
