@@ -31,11 +31,13 @@
                         $(this_form).prepend(success_html);
                         $(this_form).find('#btn-group').append(proforma_btn);
                         $(this_form).find('#btn-group #proforma-btn-group').removeClass('d-none');
-                        // setTimeout(() => {
+                        setTimeout(() => {
 
-                        //     $('form .alert').remove();
-                        //     window.location.reload();
-                        // }, 3000);
+                            $('form .alert').remove();
+                            window.location.reload();
+                            // proforma_btn.detach();
+
+                        }, 3000);
                     }
                     if (response[key] === false) {
                         let exists_html = '<div class="alert alert-danger alert-dismissible fade show mt-5" role="alert"> ';
