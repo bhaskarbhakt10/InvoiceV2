@@ -2,6 +2,9 @@
 
     //sunmit form 
     let ajax_url = $('#gen-invoice-form').attr('action')
+    let proforma_btn = $('#proforma-btn-group');
+    proforma_btn.detach();
+
     $('#gen-invoice-form').removeAttr('action')
     $(document.body).on('submit', '#gen-invoice-form', function (e) {
         e.preventDefault();
@@ -26,11 +29,13 @@
                         success_html += '</div>';
                         $(this_form)[0].reset();
                         $(this_form).prepend(success_html);
-                        setTimeout(() => {
+                        $(this_form).find('#btn-group').append(proforma_btn);
+                        $(this_form).find('#btn-group #proforma-btn-group').removeClass('d-none');
+                        // setTimeout(() => {
 
-                            $('form .alert').remove();
-                            window.location.reload();
-                        }, 3000);
+                        //     $('form .alert').remove();
+                        //     window.location.reload();
+                        // }, 3000);
                     }
                     if (response[key] === false) {
                         let exists_html = '<div class="alert alert-danger alert-dismissible fade show mt-5" role="alert"> ';

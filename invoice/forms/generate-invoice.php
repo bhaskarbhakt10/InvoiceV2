@@ -14,6 +14,7 @@ $client_id_fromdb = $details['InvoiceClient_ID'];
 
 ?>
 
+
 <div class="row">
             <div class="col-md-1">
             </div>
@@ -166,8 +167,9 @@ $client_id_fromdb = $details['InvoiceClient_ID'];
                                     <label for="use-comma" class="form-label">Yes. I want to use comma to seprate values</label>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 "id="btn-group" >
                                 <button class="btn btn-primary">Submit</button>
+                                <a class="btn btn-primary d-none" id="proforma-btn-group" href="<?php echo NAVIGATION_URL . 'invoice-list-proforma&client-id='. $client_id; ?>">View Proforma</a>
                             </div>
                         </div>
                     </form>
