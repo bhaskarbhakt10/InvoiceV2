@@ -10,7 +10,7 @@ if (isset($_POST)) {
 
     $client_arr = array();
     foreach ($post_data as $post) {
-        $client_arr[$post['name']] = $post['value'];
+        $client_arr[$post['name']] = preg_replace("/[\r\n]+/", '<br>', $post['value']);
     }
     $json_update_data = json_encode($client_arr);
     $client = new Client();

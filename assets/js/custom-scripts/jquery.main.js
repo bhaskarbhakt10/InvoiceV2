@@ -7,14 +7,14 @@
 
     //edit page 
     let edit_select__ = '';
-    if($('#edit_select').length !== 0 ){
-         edit_select__ = $('#edit_select >* ');
+    if ($('#edit_select').length !== 0) {
+        edit_select__ = $('#edit_select >* ');
     }
     let edit_check__ = '';
-    let edit_city_input ='';
-    if($('#edit_check').length !== 0 ){
-         edit_check__ = $('#edit_check');
-         edit_city_input = $('#edit_check #input-city');
+    let edit_city_input = '';
+    if ($('#edit_check').length !== 0) {
+        edit_check__ = $('#edit_check');
+        edit_city_input = $('#edit_check #input-city');
     }
 
     if ($('#edit-add-flag').length !== 0) {
@@ -51,7 +51,7 @@
                 // alert("here");
                 $('#address-box').prepend(address_text_no);
                 address_text_yes.detach();
-                if($('#edit-add-flag').length !== 0 && $(edit_city_input).val() === '' ){
+                if ($('#edit-add-flag').length !== 0 && $(edit_city_input).val() === '') {
                     $(edit_city_input).detach();
                 }
 
@@ -70,44 +70,44 @@
     // $('#edit_select__').detach();
     // }
 
-    
+
     if ($('#edit-add-flag').length !== 0) {
         let edit_flag = $('#edit-add-flag').attr('data-edit-add-flag');
         if (edit_flag === 'true') {
-            
-            if($('#input-city-check').prop('checked') === true){
+
+            if ($('#input-city-check').prop('checked') === true) {
                 $(edit_select__).detach();
             }
-            else{
+            else {
                 $(input_city).detach();
             }
         }
     }
-    else{
+    else {
 
         input_city.detach();
     }
 
     $(document.body).on('change', '#input-city-check', function (e) {
-    
-        
+
+
         if ($('#edit-add-flag').length !== 0) {
             let edit_flag = $('#edit-add-flag').attr('data-edit-add-flag');
-            if (edit_flag === 'true'){
+            if (edit_flag === 'true') {
                 console.log(edit_select__);
-                if($('#input-city-check').is(':checked')) {
-                   $(edit_select__).detach();
-                //    $(edit_city_input).insertAfter($(this).parent());
-                   $(edit_check__).append(edit_city_input);
+                if ($('#input-city-check').is(':checked')) {
+                    $(edit_select__).detach();
+                    //    $(edit_city_input).insertAfter($(this).parent());
+                    $(edit_check__).append(edit_city_input);
                 }
-                else{
+                else {
                     $('#edit_select').append(edit_select__)
-                    
+
                     $(edit_city_input).detach();
                 }
             }
         }
-        else{
+        else {
 
 
             if ($(this).is(':checked')) {
@@ -121,7 +121,7 @@
             }
 
         }
-        
+
     });
 
     //detach gstin
@@ -166,10 +166,11 @@
             gstin__check(this_input);
 
         }
-        else if (this_input.includes(state_l) === true && this_input.includes(country_l) === true) {
+        else if ((this_input.includes(state_l) === true && this_input.includes(country_l) === true) || this_input.includes(state_l) === true) {
             igst__.val("N/A");
             cgst__.val('9%');
             sgst__.val('9%');
+            gstin__check(this_input);
 
         }
         else {
@@ -177,6 +178,7 @@
             cgst__.val('N/A');
             sgst__.val('N/A');
         }
+        // debugger;
 
     });
     $(".datepicker").datepicker({
@@ -386,15 +388,30 @@
 
 
     //gst validation
-    $(document.body).on('change','[name="client-gst"]', function(){
-        if($(this).val().length !== 15){
-            alert("GSTIN Number Cannot be less than 15. Current Length "+ $(this).val().length);
-            $(this).closest('form').find('button').attr('disabled','disabled');
+    $(document.body).on('change', '[name="client-gst"]', function () {
+        if ($(this).val().length !== 15) {
+            alert("GSTIN Number Cannot be less than 15. Current Length " + $(this).val().length);
+            $(this).closest('form').find('button').attr('disabled', 'disabled');
         }
-    else{
-            $(this).closest('form').find('button').removeAttr('disabled','disabled');
+        else {
+            $(this).closest('form').find('button').removeAttr('disabled', 'disabled');
         }
     });
 
+
+    //required fields are marked with *
+    $('input[class^=form],select[class^=form],textarea[class^=form]').addClass('form-field');
+    // const form_fields = $('form .form-field').toArray();
+    // form_fields.forEach(form_field => {
+    //     if($(form_field).prop('required') === true){
+    //         $(form_field).parent().find('label').addClass('mandatory_input');
+    //         $(form_field).parent().find('label').append('<span> *</span>');
+    //     }
+    //     else{
+            
+
+    //     }
+        // debugger;
+    // });
 
 })(jQuery);

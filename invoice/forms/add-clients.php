@@ -36,7 +36,7 @@ if (array_key_exists('page', $_GET) && $_GET['page'] === 'invoice-edit-clients' 
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <label for="client-name" class="form-label"> Client Name</label>
+                                <label for="client-name" class="form-label"> Client Name <span>*</span></label>
                                 <input type="text" name="client-name" id="client-name" class="form-control form-field" required placeholder="Client Name" <?php echo $edit === true && !empty($editdetails['client-name']) ? 'value="' . $editdetails['client-name'] . '"' : ''; ?>>
                             </div>
                             <div class="col-md-12">
@@ -57,18 +57,18 @@ if (array_key_exists('page', $_GET) && $_GET['page'] === 'invoice-edit-clients' 
                                     <div class="address-wrapper" data-ref="use-text-box-no">
                                         <div class="row">
                                             <div class="col-md-12 mb-3">
-                                                <label for="address-line-one" class="form-label">Address</label>
+                                                <label for="address-line-one" class="form-label">Address <span>*</span></label>
                                                 <input type="text" name="address-line-one" id="address-line-one" placeholder="Address Line 1" class="form-control form-field" required <?php echo $edit === true&& !empty($editdetails['address-line-one']) ? 'value="' . $editdetails['address-line-one'] . '"' : ''; ?>>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="mb-3">
-                                                    <label for="address-line-two" class="form-label">Address Line 2</label>
+                                                    <label for="address-line-two" class="form-label">Address Line 2 <span>*</span></label>
                                                     <input type="text" name="address-line-two" id="address-line-two" class="form-control form-field" required <?php echo $edit === true  && !empty($editdetails['address-line-two']) ? 'value="' . $editdetails['address-line-two'] . '"' : ''; ?>>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="mb-3">
-                                                    <label for="address-country" class="form-label">Select a Country</label>
+                                                    <label for="address-country" class="form-label">Select a Country <span>*</span></label>
                                                     <select name="address-country" id="address-country" class="form-select form-field " required>
                                                         <?php if ($edit === true && !empty($editdetails['address-country'])) { ?> <option selected value="<?php echo $editdetails['address-country']; ?>"><?php echo $editdetails['address-country']; ?></option><?php } ?>
                                                         <option value="">Select an country</option>
@@ -78,7 +78,7 @@ if (array_key_exists('page', $_GET) && $_GET['page'] === 'invoice-edit-clients' 
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="mb-3">
-                                                    <label for="address-country-state" class="form-label">Select a State</label>
+                                                    <label for="address-country-state" class="form-label">Select a State <span>*</span></label>
                                                     <select name="address-country-state" id="address-country-state" class="form-select form-field" required>
                                                         <?php if ($edit === true && !empty($editdetails['address-country-state'])) { ?> <option selected value="<?php echo $editdetails['address-country-state']; ?>"><?php echo $editdetails['address-country-state']; ?></option><?php } ?>
                                                         <option value="">please select a state</option>
@@ -89,7 +89,7 @@ if (array_key_exists('page', $_GET) && $_GET['page'] === 'invoice-edit-clients' 
                                             <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <div id="edit_select">
-                                                    <label for="address-country-city" class="form-label">Select a City</label>
+                                                    <label for="address-country-city" class="form-label">Select a City <span>*</span></label>
                                                     <select name="address-country-city" id="address-country-city" class="form-select form-field" required>
                                                         <?php if ($edit === true && $editdetails['address-country-city']) { ?> <option selected value="<?php echo $editdetails['address-country-city']; ?>"><?php echo $editdetails['address-country-city']; ?></option><?php } ?>
                                                         <option value="">please select a City</option>
@@ -110,7 +110,7 @@ if (array_key_exists('page', $_GET) && $_GET['page'] === 'invoice-edit-clients' 
                                                 ?>
                                                 <div class="col-md-6">
                                                 <div class="mb-3">
-                                                    <label for="address-country-city" class="form-label">Select a City</label>
+                                                    <label for="address-country-city" class="form-label">Select a City <span>*</span></label>
                                                     <select name="address-country-city" id="address-country-city" class="form-select form-field" required>
                                                         <option value="">please select a City</option>
                                                     </select>
@@ -118,7 +118,7 @@ if (array_key_exists('page', $_GET) && $_GET['page'] === 'invoice-edit-clients' 
                                                         <div>
                                                             <input type="checkbox" name="input-city-check" id="input-city-check" class="form-check-input">
                                                             <label for="input-city-check">Can't find the city I'm looking for. Let me type</label>
-                                                            <input type="text" name="input-city" id="input-city" class="form-control form-field" required >
+                                                            <input type="text" name="input-city" id="input-city" class="form-control form-field" required  placeholder="Required *">
                                                         </div>
                                                     </div>
                                                     
@@ -129,7 +129,7 @@ if (array_key_exists('page', $_GET) && $_GET['page'] === 'invoice-edit-clients' 
                                             ?>
                                             <div class="col-md-6">
                                                 <div class="mb-3">
-                                                    <label for="postal-code" class="form-label">Postal Code</label>
+                                                    <label for="postal-code" class="form-label">Postal Code <span>*</span></label>
                                                     <input type="text" name="postal-code" id="postal-code" class="form-control form-field" required <?php echo $edit === true && !empty($editdetails['postal-code']) ? 'value="' . $editdetails['postal-code'] . '"' : ''; ?>>
                                                 </div>
                                             </div>
@@ -137,8 +137,8 @@ if (array_key_exists('page', $_GET) && $_GET['page'] === 'invoice-edit-clients' 
                                     </div>
                                     <div class="address-text" data-ref="use-text-box-yes">
                                         <div class="text-address mb-3">
-                                            <label for="" class="form-label">Input address</label>
-                                            <textarea name="text-address-box" id="text-address-box" cols="30" rows="2" class="form-control form-field" required placeholder="Use <br> to break the address into multiple lines "><?php echo $edit===true && !empty($editdetails['text-address-box']) ? $editdetails['text-address-box'] : '' ;?></textarea>
+                                            <label for="" class="form-label">Input address <span>*</span></label>
+                                            <textarea name="text-address-box" id="text-address-box" cols="30" rows="2" class="form-control form-field" required placeholder="Use new line to break the address into multiple lines "><?php echo $edit===true && !empty($editdetails['text-address-box']) ? preg_replace("/<br\s*\/?>/", "\n",$editdetails['text-address-box']) : '' ;?></textarea>
                                         </div>
                                     </div>
                                     <div class="address-tax" id="address-tax">
@@ -148,11 +148,11 @@ if (array_key_exists('page', $_GET) && $_GET['page'] === 'invoice-edit-clients' 
                                                     <div class="d-flex w-100 gap-10">
                                                         <div class="w-25">
                                                             <label for="address-country-code" class="form-label">Country Code</label>
-                                                            <input type="text" name="address-country-code" id="address-country-code" class="form-control form-field" placeholder="+91" required <?php echo $edit === true ? 'value="' . $editdetails['address-country-code'] . '"' : ''; ?> />
+                                                            <input type="text" name="address-country-code" id="address-country-code" class="form-control form-field" placeholder="+91" <?php echo $edit === true ? 'value="' . $editdetails['address-country-code'] . '"' : ''; ?> />
                                                         </div>
                                                         <div class="w-100">
                                                             <label for="client-phone-number" class="form-label">Phone Number</label>
-                                                            <input type="tel" name="client-phone-number" id="client-phone-number" class="form-control form-field" placeholder="0123 456 789" required <?php echo $edit === true ? 'value="' . $editdetails['client-phone-number'] . '"' : ''; ?>>
+                                                            <input type="tel" name="client-phone-number" id="client-phone-number" class="form-control form-field" placeholder="0123 456 789" <?php echo $edit === true ? 'value="' . $editdetails['client-phone-number'] . '"' : ''; ?>>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -165,33 +165,33 @@ if (array_key_exists('page', $_GET) && $_GET['page'] === 'invoice-edit-clients' 
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="mb-3">
-                                                    <label for="CGST">CGST</label>
+                                                    <label for="CGST">CGST <span>*</span></label>
                                                     <input type="text" name="CGST" id="CGST" class="form-control form-field" required readonly <?php echo $edit === true && !empty($editdetails['CGST']) ?  'value="' . $editdetails['CGST'] . '"' : ''; ?>>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="mb-3">
-                                                    <label for="SGST">SGST</label>
+                                                    <label for="SGST">SGST <span>*</span></label>
                                                     <input type="text" name="SGST" id="SGST" class="form-control form-field" required readonly <?php echo $edit === true && !empty($editdetails['SGST']) ?  'value="' . $editdetails['SGST'] . '"' : ''; ?>>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="mb-3">
-                                                    <label for="IGST">IGST</label>
+                                                    <label for="IGST">IGST <span>*</span></label>
                                                     <input type="text" name="IGST" id="IGST" class="form-control form-field" required readonly <?php echo $edit === true && !empty($editdetails['IGST']) ?  'value="' . $editdetails['IGST'] . '"' : ''; ?>>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-3">
                                                 <div class="mb-3">
-                                                    <label for="country-currency">Currency</label>
+                                                    <label for="country-currency">Currency <span>*</span></label>
                                                     <input type="text" name="country-currency" id="country-currency" class="form-control form-field" required readonly <?php echo $edit === true && !empty($editdetails['country-currency']) ?  'value="' . $editdetails['country-currency'] . '"' : ''; ?>>
                                                 </div>
                                             </div>
                                             <div class="col-md-12" id="gstin">
                                                 <div class="mb-3">
                                                     <label for="client-gst" class="form-label">GSTIN</label>
-                                                    <input type="text" name="client-gst" id="client-gst" class="form-control form-field" required placeholder="" required <?php echo $edit === true && !empty($editdetails['client-gst']) ? 'value="' . $editdetails['client-gst'] . '"' : ''; ?>>
+                                                    <input type="text" name="client-gst" id="client-gst" class="form-control form-field"  placeholder=""  <?php echo $edit === true && !empty($editdetails['client-gst']) ? 'value="' . $editdetails['client-gst'] . '"' : ''; ?>>
                                                 </div>
                                             </div>
                                         </div>
