@@ -9,10 +9,10 @@ if(isset($_POST)){
     $data_arr = array();
     foreach($form_data as $datakey => $datavalue){
         if(array_key_exists($datavalue['name'], $data_arr)){
-            $data_arr[$datavalue['name']] .= ",".$datavalue['value']  ;
+            $data_arr[$datavalue['name']] .= ",".preg_replace("/[\r\n]+/", '<br>', $datavalue['value']);
         }
         else{
-            $data_arr[$datavalue['name']] = $datavalue['value']   ;
+            $data_arr[$datavalue['name']] = preg_replace("/[\r\n]+/", '<br>', $datavalue['value']);   ;
         }
        
     }
@@ -39,13 +39,15 @@ if(isset($_POST)){
     $invoice_data = json_encode($data_array_to_db);
     // print_r($invoice_data);
 
+    
     $response_array = array();
+    
     if($invoice->update_invoiceInvoices_Info($invoice_data, $update_id) === true){
         $response_array['response'] = true;
     }
     else{
         $response_array['response'] = false;
     }
-
     echo json_encode($response_array);
+
 }

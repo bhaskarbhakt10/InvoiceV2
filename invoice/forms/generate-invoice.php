@@ -2,7 +2,7 @@
 $client_id = $_GET['client-id'];
 $details = $client->get_client_details_by_id($client_id);
 $d = json_decode($details['InvoiceClient_Info'], true);
-print_r(gettype($details['InvoiceClient_Info']));
+// print_r(gettype($details['InvoiceClient_Info']));
 $cgst = $d['CGST'];
 $sgst = $d['SGST'];
 $igst = $d['IGST'];
@@ -27,12 +27,14 @@ $client_id_fromdb = $details['InvoiceClient_ID'];
                     <input type="hidden" name="client_id" value="<?php echo $client_id_fromdb; ?>">
                         <div class="row">
                             <div class="col-md-3">
-                                <div class="mb-3 d-none" >
-                                    <input type="text" name="performa-number" id="performa-number" class="form-control form-field" readonly value="<?php echo $invoice->generate_Performa_number($client_id_fromdb);?>">
+                                <div class="mb-3 d-none" hidden>
+                                    <input type="hidden" name="performa-number" id="performa-number" class="form-control form-field" readonly value="<?php echo $invoice->generate_Performa_number($client_id_fromdb);?>">
+                                    <input type="hidden" name="performa-new" id="performa-new" class="form-control form-field"  required readonly value="<?php echo $invoice->newPerfoma();?>">
                                 </div>
                                 <div class="mb-3" >
-                                    <label for="performa-new" class="form-label">Perfoma Number</label>
-                                    <input type="text" name="performa-new" id="performa-new" class="form-control form-field"  required readonly value="<?php echo $invoice->newPerfoma();?>">
+                                    <label for="performa-custom" class="form-label">Perfoma Number</label>
+                                    <input type="text" name="performa-custom" id="performa-custom" class="form-control form-field"  required value="">
+                                    <small>Recommended : <?php echo $invoice->generate_Performa_number($client_id_fromdb);?></small>
                                 </div>
                             </div>
                             <div class="col-md-3">

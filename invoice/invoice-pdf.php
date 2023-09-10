@@ -34,7 +34,8 @@ if (!empty($invoice_info_json)) {
         if ($info_arrvalue['uniqueID'] === $perfoma_id) {
             // print_r($info_arrvalue);
             // $perfoma_number = $info_arrvalue['performa-number'];
-            $perfoma_number = $info_arrvalue['performa-new'];
+            // $perfoma_number = $info_arrvalue['performa-new'];
+            $perfoma_number = $info_arrvalue['performa-custom'];
             $dated_invoice = $info_arrvalue['performa-date'];
             $service = $info_arrvalue['performa-service'];    
             $description = $info_arrvalue['description'];
@@ -86,7 +87,7 @@ if(!empty($client_details_json)){
         $city = $client_details_arr['input-city']." ";
     }
     else{
-        $city = $client_details_arr['address-country-city'];
+        // $city = $client_details_arr['address-country-city'];
 
     }
     if(strcasecmp($textbox_useage,'yes') === 0 ){
