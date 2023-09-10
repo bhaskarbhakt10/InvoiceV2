@@ -9,7 +9,7 @@ if(isset($_POST)){
     $data_arr = array();
     foreach($form_data as $datakey => $datavalue){
         if(array_key_exists($datavalue['name'], $data_arr)){
-            $data_arr[$datavalue['name']] .= ",".preg_replace("/[\r\n]+/", '<br>', $datavalue['value']);
+            $data_arr[$datavalue['name']] .= "<=>".preg_replace("/[\r\n]+/", '<br>', $datavalue['value']);
         }
         else{
             $data_arr[$datavalue['name']] = preg_replace("/[\r\n]+/", '<br>', $datavalue['value']);   ;

@@ -102,8 +102,11 @@ if(!empty($client_details_json)){
 //main table row
 $description_row = '';
 if(!empty($description) && !empty($price)){
-    $exploded_description = explode(',', $description);
-    $exploded_price = explode(',', $price);
+
+    // print_r($description);
+    // print_r($price);
+    $exploded_description = explode('<=>', $description);
+    $exploded_price = explode('<=>', $price);
     for ($i=0; $i < count($exploded_description); $i++) { 
         if(!empty($exploded_description[$i])){
             $sr_no = $i+1;
