@@ -229,9 +229,9 @@ class Invoice
                 }
             }
         }
-        echo "<pre>";
+        // echo "<pre>";
         // print_r($info_arr);
-        echo "</pre>";
+        // echo "</pre>";
         foreach($info_arr as $key=>$info){
             // echo gettype($info['invoice_number']);
             foreach($info as $i){
@@ -249,6 +249,7 @@ class Invoice
                 // echo count($InvoiceNumberArray);
                 if(count($InvoiceNumberArray) ===1 ){
                     $last_invoice_number = end($InvoiceNumberArray);
+                    // print_r($InvoiceNumberArray);
                 }
                 else{
                     sort($InvoiceNumberArray);
@@ -256,9 +257,9 @@ class Invoice
                     foreach ($InvoiceNumberArray as $key => $value) {
                         array_push($cmp_array, $value);
                     }
-                    // print_r($cmp_array);
+                    // print_r($InvoiceNumberArray);
+                    $last_invoice_number = end($cmp_array);
                 }
-                $last_invoice_number = end($cmp_array);
                 $exploded_last_number = explode('/', $last_invoice_number);
                 $invoice_prev_number = ltrim($exploded_last_number[0], '#');
                 $invoice_number = (int)$invoice_prev_number + 1;
@@ -270,7 +271,7 @@ class Invoice
     }
 
 
-    function makeitInvoice($client_id, $unique_id)
+    function makeitInvoice($client_id, $unique_id, $customNumber)
     {
         $results = $this->get_all_Details_ByID($client_id);
         // print_r($results);
@@ -298,6 +299,7 @@ class Invoice
                 $info_arr[$key]['is_perfoma'] = 0;
                 $info_arr[$key]['is_invoice'] = 1;
                 $info_arr[$key]['invoice_number'] = $invoice_number__;
+                $info_arr[$key]['invoice_custom_number'] = $customNumber;
                 $info_arr[$key]['invoice_universal_number'] = $invoice_universal_number__;
                 // print_r($this->getInvoiceId($client_id, $unique_id));
                 $info_arr[$key]['is_paid'] = 1;

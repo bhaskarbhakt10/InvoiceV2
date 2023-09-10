@@ -57,7 +57,8 @@ if (!empty($invoice_info_json)) {
             $is_perfoma = $info_arrvalue['is_perfoma'];
             $is_invoice = $info_arrvalue['is_invoice'] ;
             // $invoice_number = $info_arrvalue['invoice_number'] ;
-            $invoice_number = $info_arrvalue['invoice_universal_number'] ;
+            $invoice_number = !empty($info_arrvalue['invoice_custom_number']) ? $info_arrvalue['invoice_custom_number'] : $info_arrvalue['invoice_universal_number'] ;
+            // $invoice_number = $info_arrvalue['invoice_universal_number'] ;
             $is_paid = $info_arrvalue['is_paid'] ;
 
             $proforma_text = "Proforma";

@@ -34,7 +34,7 @@ $client_id_fromdb = $details['InvoiceClient_ID'];
                                 <div class="mb-3" >
                                     <label for="performa-custom" class="form-label">Perfoma Number</label>
                                     <input type="text" name="performa-custom" id="performa-custom" class="form-control form-field"  required value="">
-                                    <small>Recommended : <?php echo $invoice->generate_Performa_number($client_id_fromdb);?></small>
+                                    <small>Recommended : <?php echo $invoice->newPerfoma();?></small>
                                 </div>
                             </div>
                             <div class="col-md-3">

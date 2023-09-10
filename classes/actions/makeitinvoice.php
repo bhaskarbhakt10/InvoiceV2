@@ -5,10 +5,11 @@ require_once ROOT_PATH_CLASS .'invoices/class.invoice.php';
 if(isset($_POST)){
     $client_id = $_POST['client_id'];
     $unique_id = $_POST['unique_profoma_id'];
+    $customNumber = $_POST['customNumber'];
     $invoice = new Invoice();
     
     $response_array = array();
-    if($invoice->makeitInvoice($client_id, $unique_id) === true){
+    if($invoice->makeitInvoice($client_id, $unique_id, $customNumber) === true){
         $response_array['response'] = true;
     }
     else{

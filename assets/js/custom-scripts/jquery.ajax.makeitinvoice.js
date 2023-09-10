@@ -12,10 +12,21 @@
         let parent = $(this).parent();
         let client_id = $(this).attr('data-id');
         let unique_profoma_id = $(this).attr('data-uniqid');
+        const customNumber = confirm("Do you want to give a custom invoice number?");
+        let custNo ;
+        if(customNumber === true){
+            custNo = prompt('Enter Custom Number', '#001/2023-24');
+
+        }
+        else{
+            custNo = '';
+        }
         let data ={
             "client_id" :client_id,
-            'unique_profoma_id' : unique_profoma_id
+            'unique_profoma_id' : unique_profoma_id,
+            'customNumber' : custNo
         }
+        
         $.ajax({
             url: ajax_url,
             type: 'POST',
@@ -37,5 +48,6 @@
                 window.alert(error);
             }
         });
+        
     });
 })(jQuery);
