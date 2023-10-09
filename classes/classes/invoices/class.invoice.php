@@ -233,12 +233,15 @@ class Invoice
         // print_r($info_arr);
         // echo "</pre>";
         foreach($info_arr as $key=>$info){
-            // echo gettype($info['invoice_number']);
+            // echo gettype($info);
+            // print_r($info);
+            if($info !== null){
             foreach($info as $i){
                 if(!empty($i['invoice_universal_number']) ){
                     array_push($InvoiceNumberArray,$i['invoice_universal_number']);
                 }
             }
+        }
         }
 
         // print_r($InvoiceNumberArray);

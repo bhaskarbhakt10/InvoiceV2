@@ -7,9 +7,11 @@
     $(document.body).on('click', '.invoice', function(e){
         e.preventDefault();
         let this_btn = $(this);
+        console.log($(this_btn).addClass('d-none'));
         let this_closest_href = $(this).closest('td').find('.view-pdf').attr('href');
         // console.log(this_closest_href);
         let parent = $(this).parent();
+        console.log(parent);
         let client_id = $(this).attr('data-id');
         let unique_profoma_id = $(this).attr('data-uniqid');
         const customNumber = confirm("Do you want to give a custom invoice number?");
@@ -36,8 +38,8 @@
                 console.log(data__);
                 for (const key in data__) {
                    if(data__[key] === true){
-                        $(this_btn).remove();
-                        $(parent).append('<a href="'+this_closest_href+'&trigger=download" class="btn btn-outline-success download" id="download"><i class="fa-duotone fa-download"></i></a>')
+                       $(this_btn).closest('td').append('<a href="'+this_closest_href+'&trigger=download" class="btn btn-outline-success download" id="download"><i class="fa-duotone fa-download"></i></a>')
+                       console.log($(this_btn).remove());
                    }
                    else{
                     alert('something went wrong');
@@ -48,6 +50,7 @@
                 window.alert(error);
             }
         });
+        
         
     });
 })(jQuery);

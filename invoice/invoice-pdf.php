@@ -380,21 +380,27 @@ if (!empty($service)) {
 
             break;
         case 'AMC':
+            $pdf->SetFooterMargin(102);
 
             break;
         case 'WSD':
+            $pdf->SetFooterMargin(102);
 
             break;
         case 'MKT':
+            $pdf->SetFooterMargin(102);
 
             break;
         case 'DHS':
+            $pdf->SetFooterMargin(103);
 
             break;
         case 'DES':
+            $pdf->SetFooterMargin(103);
 
             break;
         case 'ECOM':
+            $pdf->SetFooterMargin(103);
 
             break;
 
